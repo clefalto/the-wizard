@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://c8pwwbq8gcys"]
+
+[ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
+size = Vector3(7.5, 0.25, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xo0s0"]
+size = Vector3(7.5, 0.25, 5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xo0s0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j57ll"]
+size = Vector3(0.25, 0.25, 0.75)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nemko"]
+points = PackedVector3Array(-0.125, -0.125, -0.363565, 0.125, 0.125, 0.363565, 0.125, -0.125, 0.363565, 0.125, 0.125, -0.363565, -0.125, 0.125, 0.363565, -0.125, -0.125, 0.363565, 0.125, -0.125, -0.363565, -0.125, 0.125, -0.363565)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_62fbj"]
+radius = 0.125
+
+[sub_resource type="SphereMesh" id="SphereMesh_pkgf5"]
+radius = 0.125
+height = 0.25
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_avw3x"]
+seed = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xo0s0"]
+seamless = true
+noise = SubResource("FastNoiseLite_avw3x")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avw3x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avw3x"]
+albedo_texture = SubResource("NoiseTexture2D_xo0s0")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource("NoiseTexture2D_avw3x")
+emission_enabled = true
+emission = Color(0.16, 0.16, 0.16, 1)
+
+[sub_resource type="Environment" id="Environment_avw3x"]
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.16
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Playfield" type="Node3D" parent="."]
+transform = Transform3D(0.992171, 0.124883, 0, -0.124883, 0.992171, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="BaseBoard" type="MeshInstance3D" parent="Playfield"]
+mesh = SubResource("BoxMesh_avw3x")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Playfield/BaseBoard"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BaseBoard/StaticBody3D"]
+shape = SubResource("BoxShape3D_xo0s0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Playfield"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.495329, 0)
+mesh = SubResource("CylinderMesh_xo0s0")
+
+[node name="LeftFlipper" type="Node3D" parent="Playfield"]
+transform = Transform3D(0.721676, 0, -0.692231, 0, 1, 0, 0.692231, 0, 0.721676, 1.96991, 0.263013, 1.35957)
+script = ExtResource("1_xo0s0")
+activation_action = "flip_left"
+flip_speed = 500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Playfield/LeftFlipper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.392283)
+mesh = SubResource("BoxMesh_j57ll")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Playfield/LeftFlipper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.392283)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/LeftFlipper/CharacterBody3D"]
+shape = SubResource("ConvexPolygonShape3D_nemko")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.768365, 0.911682)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_62fbj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_pkgf5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_avw3x")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.80702e-08, -0.76656, 0.642172, -3.35074e-08, 0.642172, 0.76656, -1, 0, -4.37114e-08, 3.92566, 2.70282, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14281, 0)
+light_energy = 2.986
+light_indirect_energy = 1.97
+omni_range = 10.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_avw3x")

@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqi2of68yssx7"]
+
+[ext_resource type="Script" uid="uid://cyhqjatdiihnl" path="res://scenes/ball.gd" id="1_k2fmo"]
+[ext_resource type="Texture2D" uid="uid://dj48r15w7a72o" path="res://ball.png" id="2_l3cfh"]
+[ext_resource type="Texture2D" uid="uid://73dwel57kh3g" path="res://flipper.png" id="3_6q06x"]
+[ext_resource type="Script" uid="uid://bmblnqnxv352d" path="res://scenes/flipper/flipper.gd" id="3_l3cfh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ow5a4"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3cfh"]
+size = Vector2(45.4835, 14.4041)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l3cfh"]
+bounce = 0.75
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2fmo"]
+normal = Vector2(1, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6q06x"]
+bounce = 0.75
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l3cfh"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ow5a4"]
+bounce = 0.75
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6q06x"]
+normal = Vector2(0, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 193.0
+offset_top = 23.0
+offset_right = 439.0
+offset_bottom = 336.0
+color = Color(0.13, 0.13, 0.13, 1)
+
+[node name="RigidBalldy" type="RigidBody2D" parent="."]
+position = Vector2(273, 120)
+continuous_cd = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBalldy"]
+shape = SubResource("CircleShape2D_ow5a4")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBalldy"]
+texture = ExtResource("2_l3cfh")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(379, 91)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_k2fmo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("2_l3cfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_ow5a4")
+
+[node name="Flipper" type="Node2D" parent="."]
+position = Vector2(255, 284)
+script = ExtResource("3_l3cfh")
+activation_action = "flip_left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Flipper"]
+texture = ExtResource("3_6q06x")
+
+[node name="AnimatableBody2D" type="CharacterBody2D" parent="Flipper"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flipper/AnimatableBody2D"]
+position = Vector2(12.3879, 9.92444)
+rotation = 0.592987
+shape = SubResource("RectangleShape2D_l3cfh")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(193, 184)
+physics_material_override = SubResource("PhysicsMaterial_l3cfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_k2fmo")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(440, 187)
+physics_material_override = SubResource("PhysicsMaterial_6q06x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("WorldBoundaryShape2D_l3cfh")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+position = Vector2(314, 23)
+physics_material_override = SubResource("PhysicsMaterial_ow5a4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+shape = SubResource("WorldBoundaryShape2D_6q06x")

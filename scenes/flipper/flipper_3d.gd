@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Node3D
 
 @export var activation_action: String
 @export var max_flip_angle := 90.0
@@ -8,9 +7,6 @@ extends Node2D
 
 enum FlipperSide {left, right}
 @export var flip_side: FlipperSide
-
-#@onready var static_body: StaticBody2D = $StaticBody2D
-@onready var area: Area2D = $Area2D
 
 var flip_pressed := false
 
@@ -24,7 +20,7 @@ func _unhandled_input(event: InputEvent):
 func _process(delta: float):
 	var flip_direction = 1 if flip_side == FlipperSide.left else -1
 	if flip_pressed:
-		self.rotation_degrees = clampf(self.rotation_degrees - delta * flip_speed * flip_direction, min(-max_flip_angle * flip_direction, max_flip_angle * flip_direction), max(max_flip_angle * flip_direction, -max_flip_angle * flip_direction))
+		self.rotation_degrees.y = clampf(self.rotation_degrees.y + delta * flip_speed * flip_direction, min(-max_flip_angle * flip_direction, max_flip_angle * flip_direction), max(max_flip_angle * flip_direction, -max_flip_angle * flip_direction))
 	else: # settle
 		#$AnimatableBody2D.constant_angular_velocity = 0
-		self.rotation_degrees = clampf(self.rotation_degrees + delta * settle_speed * flip_direction, min(0.0, -max_flip_angle * flip_direction), max(0.0, -max_flip_angle * flip_direction))
+		self.rotation_degrees.y = clampf(self.rotation_degrees.y - delta * settle_speed * flip_direction, min(0.0, -max_flip_angle * flip_direction), max(0.0, -max_flip_angle * flip_direction))

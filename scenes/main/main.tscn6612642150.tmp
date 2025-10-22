@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqi2of68yssx7"]
+[gd_scene load_steps=13 format=3 uid="uid://bqi2of68yssx7"]
 
-[ext_resource type="Script" uid="uid://diq7yt4r812ku" path="res://scenes/main/game_manager.gd" id="1_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://cecmppyxemcxc" path="res://scenes/ball/rigid_balldy.tscn" id="2_hujxm"]
+[ext_resource type="Script" uid="uid://cyhqjatdiihnl" path="res://scenes/ball.gd" id="1_k2fmo"]
+[ext_resource type="Texture2D" uid="uid://dj48r15w7a72o" path="res://ball.png" id="2_l3cfh"]
 [ext_resource type="Texture2D" uid="uid://73dwel57kh3g" path="res://flipper.png" id="3_6q06x"]
 [ext_resource type="Script" uid="uid://bmblnqnxv352d" path="res://scenes/flipper/flipper.gd" id="3_l3cfh"]
-[ext_resource type="Script" uid="uid://dn44fqr11u5ho" path="res://scenes/mechanics/drain_zone.gd" id="5_6q06x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ow5a4"]
+radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3cfh"]
 size = Vector2(45.4835, 14.4041)
@@ -27,14 +29,7 @@ bounce = 0.75
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6q06x"]
 normal = Vector2(0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q06x"]
-size = Vector2(246, 24)
-
 [node name="Node2D" type="Node2D"]
-
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("drain_zone")]
-script = ExtResource("1_ow5a4")
-drain_zone = NodePath("../DrainZone")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 193.0
@@ -43,12 +38,31 @@ offset_right = 439.0
 offset_bottom = 336.0
 color = Color(0.13, 0.13, 0.13, 1)
 
-[node name="RigidBalldy" parent="." instance=ExtResource("2_hujxm")]
+[node name="RigidBalldy" type="RigidBody2D" parent="."]
 position = Vector2(273, 120)
+continuous_cd = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBalldy"]
+shape = SubResource("CircleShape2D_ow5a4")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBalldy"]
+texture = ExtResource("2_l3cfh")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(379, 91)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_k2fmo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("2_l3cfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_ow5a4")
 
 [node name="LeftFlipper" type="Node2D" parent="."]
 position = Vector2(255, 284)
-rotation = -1.5708
 script = ExtResource("3_l3cfh")
 activation_action = "flip_left"
 flip_speed = 750.0
@@ -65,11 +79,9 @@ shape = SubResource("RectangleShape2D_l3cfh")
 
 [node name="RightFlipper" type="Node2D" parent="."]
 position = Vector2(365, 284)
-rotation = 1.5708
 script = ExtResource("3_l3cfh")
 activation_action = "flip_right"
 flip_speed = 750.0
-flip_side = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="RightFlipper"]
 texture = ExtResource("3_6q06x")
@@ -102,39 +114,3 @@ physics_material_override = SubResource("PhysicsMaterial_ow5a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
 shape = SubResource("WorldBoundaryShape2D_6q06x")
-
-[node name="RightObstacle" type="StaticBody2D" parent="."]
-position = Vector2(398, 239)
-scale = Vector2(-1, 1)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightObstacle"]
-polygon = PackedVector2Array(-23, -17, -23, 13, 21, 46, 21, 14)
-
-[node name="LeftObstacle" type="StaticBody2D" parent="."]
-position = Vector2(223, 239)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftObstacle"]
-polygon = PackedVector2Array(-23, -17, -23, 13, 21, 46, 21, 11)
-
-[node name="RightDrainWall" type="StaticBody2D" parent="."]
-position = Vector2(415, 283)
-scale = Vector2(-1, 1)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightDrainWall"]
-polygon = PackedVector2Array(-22, -37, -22, 51, 77, 51, 77, 34)
-
-[node name="LeftDrainWall" type="StaticBody2D" parent="."]
-position = Vector2(217, 283)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftDrainWall"]
-polygon = PackedVector2Array(-22, -22, -22, 51, 73, 51, 73, 36)
-
-[node name="DrainZone" type="Area2D" parent="."]
-position = Vector2(307, 348)
-script = ExtResource("5_6q06x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DrainZone"]
-position = Vector2(9, 0)
-shape = SubResource("RectangleShape2D_6q06x")
-
-[connection signal="body_entered" from="DrainZone" to="DrainZone" method="_on_body_entered"]
