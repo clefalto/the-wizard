@@ -13,9 +13,11 @@ func _process(delta: float) -> void:
 		is_active = !is_active
 		visible = !visible
 
+func _on_item_a_pressed() -> void:
+	inventory._on_bought_item("chips")
 
-func _on_one_pressed() -> void:
-	inventory._on_bought_item("A")
+func _on_item_b_pressed() -> void:
+	inventory._on_bought_item("mult")
 
-func _on_two_pressed() -> void:
-	inventory._on_bought_item("B")
+func _on_item_c_pressed() -> void:
+	inventory._on_bought_item("balls")

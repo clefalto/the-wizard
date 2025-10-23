@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7nybjw11hat7"]
+[gd_scene load_steps=4 format=3 uid="uid://c7nybjw11hat7"]
 
 [ext_resource type="Script" uid="uid://dyxpfaku8qyn4" path="res://scenes/Shop/shop_ui.gd" id="1_5khn6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5ood"]
 font_size = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wexfd"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -52,7 +54,7 @@ text = "SHOP!"
 label_settings = SubResource("LabelSettings_f5ood")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,23 +62,43 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -111.0
-offset_top = -20.0
+offset_top = -33.0
 offset_right = 111.0
-offset_bottom = 20.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemA" type="Button" parent="HBoxContainer"]
+[node name="ItemA" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "buy item A!"
+text = "buy chip item!"
 
-[node name="ItemB" type="Button" parent="HBoxContainer"]
+[node name="ItemB" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "buy item B!"
+text = "buy mult item!"
 
-[connection signal="pressed" from="HBoxContainer/ItemA" to="." method="_on_one_pressed"]
-[connection signal="pressed" from="HBoxContainer/ItemA" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ItemB" to="." method="_on_two_pressed"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_wexfd")
+
+[node name="ItemC" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "buy ball item!"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_wexfd")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ItemA" to="." method="_on_item_a_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ItemB" to="." method="_on_item_b_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ItemC" to="." method="_on_item_c_pressed"]
