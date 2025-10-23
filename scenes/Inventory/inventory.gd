@@ -15,7 +15,7 @@ func _on_bought_item(item: String):
 			inventory_ui._on_set_item(i, item)
 			return
 	
-	print("inventory.gd: coudln't buy!")
+	print("inventory.gd: inventory full!")
 
 func _on_destroy_item(slot: int):
 	inventory[slot] = null

@@ -8,12 +8,12 @@ var slot_number = 0
 
 func construct(slot: int):
 	slot_number = slot
-	slot_number_label.text = str(slot)
+	set_item("")
 
 func set_item(item: String):
 	# item is removed
 	if item == "":
-		slot_number_label.text = str(slot_number)
+		slot_number_label.text = "[" + str(slot_number) + "]"
 		return
 	
 	# set item

@@ -14,5 +14,8 @@ func _process(delta: float) -> void:
 		visible = !visible
 
 
-func _on_button_pressed() -> void:
-	inventory._on_bought_item("item")
+func _on_one_pressed() -> void:
+	inventory._on_bought_item("A")
+
+func _on_two_pressed() -> void:
+	inventory._on_bought_item("B")
