@@ -1,21 +1,21 @@
-extends Control
+extends Node
 
-var inventory = []
+@onready var inventory_ui = $"../Control/InventoryUI"
 
-@onready var shop = get_tree().get_first_node_in_group("Shop")
-@onready var ui_inventory_container = $InventorySlots
-
+var inventory = [null, null, null, null, null]
 
 func _ready() -> void:
-	# set inventory slot labels
-	var slot = 1
-	for i in ui_inventory_container.get_children():
-		i.construct(slot)
-		slot += 1
+	pass
+
+func _on_bought_item(item: String):
+	# check inventory for open slots
+	for i in range(inventory.size()):
+		if inventory[i] == null:
+			inventory[i] = item
+			inventory_ui._on_set_item(i, item)
+			return
 	
-	# connections
-	shop.buy_item.connect(_on_bought_item)
+	print("inventory.gd: coudln't buy!")
 
-
-func _on_bought_item(item: Node):
-	print("bought item")
+func _on_destroy_item(slot: int):
+	inventory[slot] = null

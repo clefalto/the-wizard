@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7nybjw11hat7"]
 
-[ext_resource type="Script" uid="uid://dyxpfaku8qyn4" path="res://scenes/Shop/shop.gd" id="1_5khn6"]
+[ext_resource type="Script" uid="uid://dyxpfaku8qyn4" path="res://scenes/Shop/shop_ui.gd" id="1_5khn6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5ood"]
 font_size = 50
 
-[node name="Shop" type="Control" groups=["Shop"]]
+[node name="Shop" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

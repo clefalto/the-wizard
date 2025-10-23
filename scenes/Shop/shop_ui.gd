@@ -1,8 +1,8 @@
 extends Control
 
-var is_active:bool = false
+@onready var inventory = get_tree().get_first_node_in_group("Inventory")
 
-signal buy_item(item: Node)
+var is_active:bool = false
 
 func _ready() -> void:
 	visible = false
@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	buy_item.emit(null)
+	inventory._on_bought_item("item")

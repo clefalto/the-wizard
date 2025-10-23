@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ywl15a8kj54o"]
+[gd_scene load_steps=7 format=3 uid="uid://ywl15a8kj54o"]
 
 [ext_resource type="PackedScene" uid="uid://c8pwwbq8gcys" path="res://scenes/test/three_dimensions.tscn" id="1_iuonh"]
 [ext_resource type="PackedScene" uid="uid://dj8s63j031ppn" path="res://scenes/Scoreboard/scoreboard_UI.tscn" id="3_k2fmo"]
-[ext_resource type="PackedScene" uid="uid://bvuuet4x003bd" path="res://scenes/Inventory/inventory.tscn" id="3_l3cfh"]
-[ext_resource type="PackedScene" uid="uid://c7nybjw11hat7" path="res://scenes/Shop/shop.tscn" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://bvuuet4x003bd" path="res://scenes/Inventory/inventory_ui.tscn" id="3_l3cfh"]
+[ext_resource type="Script" uid="uid://osa6m6p1k8y1" path="res://scenes/Inventory/inventory.gd" id="3_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://c7nybjw11hat7" path="res://scenes/Shop/shop_ui.tscn" id="4_l3cfh"]
 [ext_resource type="Script" uid="uid://42n4dn5ihi8i" path="res://scenes/main/score_manager.gd" id="5_6q06x"]
 
 [node name="Main" type="Node3D"]
@@ -18,7 +19,8 @@ size = 8.0
 [node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]
 script = ExtResource("5_6q06x")
 
-[node name="Inventory2" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." groups=["Inventory"]]
+script = ExtResource("3_ow5a4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -34,7 +36,7 @@ anchor_right = 1.0
 offset_left = 497.0
 offset_right = 600.0
 
-[node name="Shop" parent="Control" instance=ExtResource("4_l3cfh")]
+[node name="ShopUI" parent="Control" instance=ExtResource("4_l3cfh")]
 layout_mode = 1
 offset_left = 153.0
 offset_top = 160.0
