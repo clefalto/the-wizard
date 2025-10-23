@@ -8,6 +8,8 @@ extends Node3D
 enum FlipperSide {left, right}
 @export var flip_side: FlipperSide
 
+@onready var initial_rotation_degrees: float = rotation_degrees.y
+
 var flip_pressed := false
 
 func _unhandled_input(event: InputEvent):
@@ -20,7 +22,9 @@ func _unhandled_input(event: InputEvent):
 func _process(delta: float):
 	var flip_direction = 1 if flip_side == FlipperSide.left else -1
 	if flip_pressed:
-		self.rotation_degrees.y = clampf(self.rotation_degrees.y + delta * flip_speed * flip_direction, min(-max_flip_angle * flip_direction, max_flip_angle * flip_direction), max(max_flip_angle * flip_direction, -max_flip_angle * flip_direction))
+		#self.rotation_degrees.y = clampf(self.rotation_degrees.y + delta * flip_speed, initial_rotation_degrees - max_flip_angle, initial_rotation_degrees + max_flip_angle)
+		self.rotation_degrees.y = move_toward(self.rotation_degrees.y, initial_rotation_degrees + flip_direction * max_flip_angle, delta * flip_speed)
 	else: # settle
 		#$AnimatableBody2D.constant_angular_velocity = 0
-		self.rotation_degrees.y = clampf(self.rotation_degrees.y - delta * settle_speed * flip_direction, min(0.0, -max_flip_angle * flip_direction), max(0.0, -max_flip_angle * flip_direction))
+		self.rotation_degrees.y = move_toward(self.rotation_degrees.y, initial_rotation_degrees, delta * settle_speed)
+		#self.rotation_degrees.y = clampf(self.rotation_degrees.y - delta * settle_speed, initial_rotation_degrees, -max_flip_angle)
