@@ -75,7 +75,7 @@ theme_override_constants/separation = 30
 [node name="ItemA" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "buy chip item!"
+text = "buy points item!"
 
 [node name="ItemB" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -92,7 +92,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_wexfd")
 
 [node name="ItemC" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "buy ball item!"
+text = "buy balls item!"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2

@@ -13,13 +13,13 @@ func _ready() -> void:
 		if i is HBoxContainer:
 			i.add_theme_constant_override("separation", 20)
 	
-	_on_add_chips(0)
+	_on_add_points(0)
 	_on_add_mult(0)
 	_on_add_balls(0)
 	#endregion
 
 
-func _on_add_chips(score) -> void:
+func _on_add_points(score) -> void:
 	chips_score_label.text = str(score)
 
 func _on_add_mult(score) -> void:
