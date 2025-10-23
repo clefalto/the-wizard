@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8pwwbq8gcys"]
+[gd_scene load_steps=15 format=3 uid="uid://c8pwwbq8gcys"]
 
+[ext_resource type="Script" uid="uid://bo5cehnr8ouoj" path="res://scenes/test/three_dimensions.gd" id="1_dykvc"]
 [ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
@@ -44,7 +45,8 @@ emission = Color(0.16, 0.16, 0.16, 1)
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 1.16
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" groups=["Board"]]
+script = ExtResource("1_dykvc")
 
 [node name="Playfield" type="Node3D" parent="."]
 transform = Transform3D(0.992171, 0.124883, 0, -0.124883, 0.992171, 0, 0, 0, 1, 0, 0, 0)
@@ -88,9 +90,6 @@ shape = SubResource("SphereShape3D_62fbj")
 mesh = SubResource("SphereMesh_pkgf5")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_avw3x")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-2.80702e-08, -0.76656, 0.642172, -3.35074e-08, 0.642172, 0.76656, -1, 0, -4.37114e-08, 3.92566, 2.70282, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14281, 0)
