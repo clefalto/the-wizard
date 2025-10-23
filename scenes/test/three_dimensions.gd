@@ -1,19 +1,14 @@
 extends Node3D
 
-signal scoreboard_add_chips(amount: float)
-signal scoreboard_add_mult(amount: float)
-signal scoreboard_add_balls(amount: float)
+@onready var score_manager = get_tree().get_first_node_in_group("ScoreManager")
 
 #region debug
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("DEBUG_add_chips"):
-		print("adding chips")
-		scoreboard_add_chips.emit(1)
+		score_manager._on_add_chips(1)
 	if Input.is_action_pressed("DEBUG_add_mult"):
-		print("adding mult")
-		scoreboard_add_mult.emit(1)
+		score_manager._on_add_mult(1)
 	if Input.is_action_pressed("DEBUG_add_balls"):
-		print("adding balls")
-		scoreboard_add_balls.emit(1)
+		score_manager._on_add_balls(1)
 
 #endregion

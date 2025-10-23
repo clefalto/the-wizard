@@ -15,35 +15,27 @@ transform = Transform3D(-2.80702e-08, -0.76656, 0.642172, -3.35074e-08, 0.642172
 projection = 1
 size = 8.0
 
-[node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]
-script = ExtResource("5_6q06x")
-
-[node name="Inventory2" type="Node" parent="."]
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ScoreboardUI" parent="Control" instance=ExtResource("3_k2fmo")]
-layout_mode = 1
+[node name="ScoreboardUi" parent="." instance=ExtResource("3_k2fmo")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 497.0
-offset_right = 600.0
+offset_left = -103.0
+offset_right = 0.0
 
-[node name="Shop" parent="Control" instance=ExtResource("4_l3cfh")]
-layout_mode = 1
-offset_left = 153.0
-offset_top = 160.0
-offset_right = 153.32
-offset_bottom = 160.0
+[node name="Inventory" parent="." instance=ExtResource("3_l3cfh")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 88.0
+offset_right = 65.0
+offset_bottom = 191.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
 
-[node name="InventoryUI" parent="Control" instance=ExtResource("3_l3cfh")]
-layout_mode = 1
-offset_left = 506.0
-offset_top = 158.0
-offset_right = 506.0
-offset_bottom = 158.0
+[node name="Shop" parent="." instance=ExtResource("4_l3cfh")]
+offset_left = -147.0
+offset_right = -146.68
+
+[node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]
+script = ExtResource("5_6q06x")
