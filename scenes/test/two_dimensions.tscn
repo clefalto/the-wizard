@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqi2of68yssx7"]
+[gd_scene load_steps=14 format=3 uid="uid://bf2cmhy0fme7q"]
 
 [ext_resource type="Script" uid="uid://diq7yt4r812ku" path="res://scenes/main/game_manager.gd" id="1_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://cecmppyxemcxc" path="res://scenes/ball/rigid_balldy.tscn" id="2_hujxm"]
