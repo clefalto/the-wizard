@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr6xgkw4k1b38"]
+
+[ext_resource type="Script" uid="uid://bwx5011fda2oa" path="res://scenes/ball/ball.gd" id="1_oqv3d"]
+[ext_resource type="Shader" uid="uid://dyomfxxd7a4cn" path="res://shaders/ball_temp.gdshader" id="2_nv6q1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oqv3d"]
+radius = 0.125
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stoaj"]
+render_priority = 0
+shader = ExtResource("2_nv6q1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pkgf5"]
+material = SubResource("ShaderMaterial_stoaj")
+radius = 0.125
+height = 0.25
+
+[node name="Ball" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 10.0
+script = ExtResource("1_oqv3d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_oqv3d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pkgf5")
