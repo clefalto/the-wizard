@@ -8,7 +8,7 @@
 size = Vector3(7.5, 0.25, 5)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tnmc"]
-friction = 0.0
+friction = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xo0s0"]
 size = Vector3(7.5, 0.25, 5)

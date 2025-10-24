@@ -19,7 +19,7 @@ height = 0.25
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 10.0
+mass = 0.08
 script = ExtResource("1_oqv3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
