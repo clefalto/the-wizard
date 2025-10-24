@@ -4,7 +4,7 @@ extends Node
 
 var inventory: Array[Item] = [null, null, null, null, null]
 var item_dictionary = {
-	"chips":ItemChips,
+	"points":ItemPoints,
 	"mult":ItemMult,
 	"balls":ItemBalls,
 }
