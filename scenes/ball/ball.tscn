@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr6xgkw4k1b38"]
+[gd_scene load_steps=7 format=3 uid="uid://cr6xgkw4k1b38"]
 
 [ext_resource type="Script" uid="uid://bwx5011fda2oa" path="res://scenes/ball/ball.gd" id="1_oqv3d"]
 [ext_resource type="Shader" uid="uid://dyomfxxd7a4cn" path="res://shaders/ball_temp.gdshader" id="2_nv6q1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nv6q1"]
+friction = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oqv3d"]
 radius = 0.125
@@ -15,11 +18,12 @@ material = SubResource("ShaderMaterial_stoaj")
 radius = 0.125
 height = 0.25
 
-[node name="Ball" type="RigidBody3D"]
+[node name="Ball" type="RigidBody3D" groups=["ball"]]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.08
+physics_material_override = SubResource("PhysicsMaterial_nv6q1")
 script = ExtResource("1_oqv3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

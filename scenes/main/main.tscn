@@ -13,6 +13,7 @@
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1.80705e-08, -0.910547, 0.413406, -3.98012e-08, 0.413406, 0.910547, -1, -2.66454e-14, -4.37113e-08, 3.03328, 5.60211, -2.78585)
+projection = 1
 size = 8.0
 
 [node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]

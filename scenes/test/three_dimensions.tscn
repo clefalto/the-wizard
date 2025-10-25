@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8pwwbq8gcys"]
+[gd_scene load_steps=17 format=3 uid="uid://c8pwwbq8gcys"]
 
 [ext_resource type="Script" uid="uid://bo5cehnr8ouoj" path="res://scenes/test/three_dimensions.gd" id="1_dykvc"]
 [ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
 [ext_resource type="PackedScene" uid="uid://cr6xgkw4k1b38" path="res://scenes/ball/ball.tscn" id="3_47141"]
+[ext_resource type="Script" uid="uid://bxbo0ve3uqxv6" path="res://scenes/mechanics/ball_reset_area.gd" id="4_bj65e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
 size = Vector3(7.5, 0.25, 5)
@@ -36,6 +37,9 @@ bounce = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkgf5"]
 size = Vector3(0.197601, 2, 5.35083)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tyqpo"]
+size = Vector3(0.761719, 1, 5)
 
 [sub_resource type="Environment" id="Environment_avw3x"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -121,6 +125,14 @@ shape = SubResource("BoxShape3D_pkgf5")
 [node name="Ball" parent="Playfield" instance=ExtResource("3_47141")]
 transform = Transform3D(0.992172, -0.124883, 0, 0.124883, 0.992172, 0, 0, 0, 1, -0.0959558, 0.76235, 0.260164)
 
+[node name="BallResetArea" type="Area3D" parent="Playfield"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("4_bj65e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BallResetArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119141, 0, 0)
+shape = SubResource("BoxShape3D_tyqpo")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14281, 0)
 light_energy = 2.986
@@ -129,3 +141,5 @@ omni_range = 10.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_avw3x")
+
+[connection signal="body_entered" from="Playfield/BallResetArea" to="Playfield/BallResetArea" method="_on_body_entered"]
