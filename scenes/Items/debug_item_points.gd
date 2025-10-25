@@ -5,4 +5,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_active and Input.is_action_just_pressed("DEBUG_add_points"):
-		score_manager._on_add_points(1)
+		score_manager.add_points(1)
