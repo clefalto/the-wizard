@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bo5cehnr8ouoj" path="res://scenes/test/three_dimensions.gd" id="1_dykvc"]
 [ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
 [ext_resource type="PackedScene" uid="uid://cr6xgkw4k1b38" path="res://scenes/ball/ball.tscn" id="3_47141"]
-[ext_resource type="Script" uid="uid://bxbo0ve3uqxv6" path="res://scenes/mechanics/ball_reset_area.gd" id="4_bj65e"]
+[ext_resource type="Script" path="res://scenes/mechanics/ball_reset_area.gd" id="4_bj65e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
 size = Vector3(7.5, 0.25, 5)
