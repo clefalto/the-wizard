@@ -90,7 +90,6 @@ color = Color(0.16474, 0.397743, 1, 1)
 script = ExtResource("3_tlfcg")
 
 [node name="ColorPickerButton2" type="ColorPickerButton" parent="."]
-layout_mode = 0
 offset_left = -40.0
 offset_top = 138.0
 offset_right = 52.0
