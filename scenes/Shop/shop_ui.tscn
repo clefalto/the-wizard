@@ -75,15 +75,13 @@ theme_override_constants/separation = 30
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/ItemTestComponent"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 70.0
+layout_mode = 1
+offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0.396861, 0.396861, 1)
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/ItemTestComponent"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 70.0
+layout_mode = 1
+offset_right = 40.0
 offset_bottom = 23.0
 text = "test"
