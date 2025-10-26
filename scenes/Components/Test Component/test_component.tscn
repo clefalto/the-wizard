@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpeymv21j6ji"]
 
-[ext_resource type="Script" uid="uid://bjtqwy14m4xhw" path="res://scenes/Components/test_component.gd" id="1_cwexv"]
+[ext_resource type="Script" uid="uid://bjtqwy14m4xhw" path="res://scenes/Components/Test Component/test_component.gd" id="1_cwexv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc3eu"]
 albedo_color = Color(1.92523e-06, 0.684639, 0.957144, 1)
@@ -15,6 +15,11 @@ points = PackedVector3Array(0.144611, 0.125, 0.448612, -0.0895657, -0.125, -0.47
 [node name="TestComponent" type="StaticBody3D"]
 script = ExtResource("1_cwexv")
 
+[node name="PointsLabel" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, 0.336075, 0)
+text = "text"
+font_size = 64
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_cwexv")
 
@@ -25,10 +30,5 @@ shape = SubResource("ConvexPolygonShape3D_powc8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("ConvexPolygonShape3D_powc8")
-
-[node name="PointsLabel" type="Label3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, 0.336075, 0)
-text = "text"
-font_size = 64
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://qc0vw3w573tk"]
 
-[ext_resource type="Script" uid="uid://bmwcs02plxqyi" path="res://scenes/Components/component_slot.gd" id="1_kvo5e"]
-[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/component_slot_3d_gui.gd" id="2_45vy3"]
+[ext_resource type="Script" uid="uid://bmwcs02plxqyi" path="res://scenes/Components/Slot/component_slot.gd" id="1_kvo5e"]
+[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/Slot/component_slot_3d_gui.gd" id="2_45vy3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ixoy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -63,3 +63,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dw8xo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GUI/Quad/Area3D"]
 shape = SubResource("ConvexPolygonShape3D_5es7e")
+
+[connection signal="pressed" from="GUI/SubViewport/GUI/Button" to="." method="_on_button_pressed"]

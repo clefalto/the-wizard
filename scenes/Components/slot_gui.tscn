@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddfkaw0mmqdh3"]
+[gd_scene load_steps=6 format=3 uid="uid://bj5aos5sdvv43"]
 
-[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/component_slot_3d_gui.gd" id="1_22r2x"]
+[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/Slot/component_slot_3d_gui.gd" id="1_22r2x"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_22r2x"]
 
