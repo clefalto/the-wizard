@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddfkaw0mmqdh3"]
+
+[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/component_slot_3d_gui.gd" id="1_22r2x"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_22r2x"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_22r2x"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obyvj"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_22r2x")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_22r2x"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[node name="GUI" type="Node3D"]
+script = ExtResource("1_22r2x")
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_22r2x")
+surface_material_override/0 = SubResource("StandardMaterial3D_obyvj")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_22r2x")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+gui_embed_subwindows = true
+size = Vector2i(50, 50)
+render_target_update_mode = 4
+
+[node name="GUI" type="Control" parent="SubViewport"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="Button" type="Button" parent="SubViewport/GUI"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "push"

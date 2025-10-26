@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://qc0vw3w573tk"]
+[gd_scene load_steps=9 format=3 uid="uid://qc0vw3w573tk"]
 
 [ext_resource type="Script" uid="uid://bmwcs02plxqyi" path="res://scenes/Components/component_slot.gd" id="1_kvo5e"]
+[ext_resource type="Script" uid="uid://cdyht2lky2xtb" path="res://scenes/Components/component_slot_3d_gui.gd" id="2_45vy3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ixoy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -8,59 +9,57 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_kvo5e"]
 material = SubResource("StandardMaterial3D_3ixoy")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_kvo5e"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_dw8xo"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kvo5e"]
-viewport_path = NodePath("SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_45vy3"]
+viewport_path = NodePath("GUI/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45vy3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw8xo"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_kvo5e")
+albedo_texture = SubResource("ViewportTexture_45vy3")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kvo5e"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5es7e"]
 points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
 [node name="ComponentSlot" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_kvo5e")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-physics_object_picking = true
-physics_object_picking_sort = true
-gui_embed_subwindows = true
-size = Vector2i(50, 45)
-render_target_update_mode = 4
-
-[node name="Button" type="Button" parent="SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -15.5
-offset_right = 23.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "push"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("SphereMesh_kvo5e")
 
-[node name="ViewportMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.229, 0)
-mesh = SubResource("PlaneMesh_kvo5e")
-surface_material_override/0 = SubResource("StandardMaterial3D_45vy3")
+[node name="GUI" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.448, 0)
+script = ExtResource("2_45vy3")
 
-[node name="Area3D" type="Area3D" parent="ViewportMesh"]
+[node name="SubViewport" type="SubViewport" parent="GUI"]
+gui_embed_subwindows = true
+size = Vector2i(50, 50)
+render_target_update_mode = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportMesh/Area3D"]
-shape = SubResource("ConvexPolygonShape3D_kvo5e")
+[node name="GUI" type="Control" parent="GUI/SubViewport"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.87316, 0)
+[node name="Button" type="Button" parent="GUI/SubViewport/GUI"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "push"
 
-[connection signal="pressed" from="SubViewport/Button" to="." method="_on_button_pressed"]
+[node name="Quad" type="MeshInstance3D" parent="GUI"]
+transparency = 0.5
+mesh = SubResource("PlaneMesh_dw8xo")
+surface_material_override/0 = SubResource("StandardMaterial3D_dw8xo")
+
+[node name="Area3D" type="Area3D" parent="GUI/Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GUI/Quad/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_5es7e")
