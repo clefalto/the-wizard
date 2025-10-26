@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
 [ext_resource type="PackedScene" uid="uid://cr6xgkw4k1b38" path="res://scenes/ball/ball.tscn" id="3_47141"]
 [ext_resource type="Script" path="res://scenes/mechanics/ball_reset_area.gd" id="4_bj65e"]
-[ext_resource type="PackedScene" uid="uid://cpeymv21j6ji" path="res://scenes/Components/test_component.tscn" id="5_tyqpo"]
+[ext_resource type="PackedScene" uid="uid://qc0vw3w573tk" path="res://scenes/Components/component_slot.tscn" id="5_tyqpo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
 size = Vector3(7.5, 0.25, 5)
@@ -132,21 +132,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119141, 0, 0)
 shape = SubResource("BoxShape3D_tyqpo")
 
 [node name="ComponentManager" type="Node3D" parent="Playfield"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199278, 0)
 
-[node name="TestComponent" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12388, 0.213509, 0)
+[node name="ComponentSlot" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
 
-[node name="TestComponent2" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12388, 0.213509, -0.973703)
+[node name="ComponentSlot2" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.03682)
 
-[node name="TestComponent3" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12388, 0.213509, 1.00046)
-
-[node name="TestComponent4" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12388, 0.213509, 1.93991)
-
-[node name="TestComponent5" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12388, 0.213509, -1.96748)
+[node name="ComponentSlot3" parent="Playfield/ComponentManager" instance=ExtResource("5_tyqpo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12091)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14281, 0)

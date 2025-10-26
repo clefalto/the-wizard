@@ -29,6 +29,7 @@ project/assembly_name="the wizard"
 ball=""
 ScoreManager=""
 Inventory=""
+Camera=""
 
 [input]
 

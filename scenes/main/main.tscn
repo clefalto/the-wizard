@@ -11,7 +11,7 @@
 
 [node name="Board" parent="." instance=ExtResource("1_iuonh")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(-1.80705e-08, -0.910547, 0.413406, -3.98012e-08, 0.413406, 0.910547, -1, -2.66454e-14, -4.37113e-08, 3.03328, 5.60211, -2.78585)
 projection = 1
 size = 8.0
