@@ -18,7 +18,6 @@ func _ready() -> void:
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)
 
-
 func _process(delta: float) -> void:
 	if is_mouse_inside and GlobalComponent.component_drag != "" and Input.is_action_just_released("MB_LEFT"):
 		print("dropped: " + GlobalComponent.component_drag)

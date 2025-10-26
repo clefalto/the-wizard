@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		visible = !visible
 
 func _on_item_a_pressed() -> void:
-	inventory._on_bought_item("points")
+	inventory._on_bought_item("TestComponent")
 
 func _on_item_b_pressed() -> void:
 	inventory._on_bought_item("mult")

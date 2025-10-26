@@ -7,17 +7,15 @@ extends Control
 var current_item: String = ""
 var slot_number = 0
 
-func _ready() -> void:
-	drag_button.dragging.connect(_on_dragging_component)
-
 func construct(slot: int):
 	slot_number = slot
+	drag_button.slot_number = slot
 	set_item("")
 
 func set_item(item: String):
 	# item is removed
 	if item == "":
-		slot_number_label.text = "[" + str(slot_number) + "]"
+		slot_number_label.text = "[" + str(slot_number + 1) + "]"
 		drag_button.visible = false
 		return
 	
@@ -30,8 +28,3 @@ func set_item(item: String):
 func _on_button_pressed() -> void:
 	set_item("") # destroy item
 	inventory._on_destroy_item(slot_number - 1) # tell inventory to kill item
-
-# get drag update from drag button
-func _on_dragging_component(preview: Control) -> void:
-	GlobalComponent.component_drag = current_item
-	GlobalComponent.component_preview = preview

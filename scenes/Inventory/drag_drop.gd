@@ -1,6 +1,7 @@
 extends Button
 
-signal dragging(preview: Control)
+var slot_number = 0
+@onready var inventory = get_tree().get_first_node_in_group("Inventory")
 
 func _ready() -> void:
 	visible = false
@@ -21,7 +22,8 @@ func _get_drag_data(_at_position: Vector2) -> String:
 	# Sets what the user will see they are dragging.
 	set_drag_preview(preview)
 	
-	dragging.emit(preview)
+	print("drag_drop.gd test: " + str(slot_number))
+	inventory._on_dragging_item(slot_number, preview)
 	return ""
 
 

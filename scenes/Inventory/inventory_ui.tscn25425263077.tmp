@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvuuet4x003bd"]
+[gd_scene load_steps=4 format=3 uid="uid://bvuuet4x003bd"]
 
 [ext_resource type="Script" uid="uid://dp0r3yfvb5xb7" path="res://scenes/Inventory/inventory_ui.gd" id="1_wri4e"]
 [ext_resource type="PackedScene" uid="uid://b2i8erscoqklb" path="res://scenes/Inventory/inventory_slot.tscn" id="2_pilxw"]
+[ext_resource type="Script" uid="uid://durc7gt8jj4vg" path="res://scenes/Inventory/drag_drop.gd" id="3_tlfcg"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -78,3 +79,21 @@ layout_mode = 2
 [node name="InventorySlot5" parent="InventorySlots" instance=ExtResource("2_pilxw")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+layout_mode = 0
+offset_left = -44.0
+offset_top = 66.0
+offset_right = 48.0
+offset_bottom = 134.0
+color = Color(0.16474, 0.397743, 1, 1)
+script = ExtResource("3_tlfcg")
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 138.0
+offset_right = 52.0
+offset_bottom = 206.0
+color = Color(0.238124, 0.540786, 0.306319, 1)
+script = ExtResource("3_tlfcg")

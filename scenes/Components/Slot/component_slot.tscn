@@ -18,6 +18,7 @@ viewport_path = NodePath("DropArea/SubViewport")
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.203922)
 albedo_texture = SubResource("ViewportTexture_7pgg1")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ndv25"]

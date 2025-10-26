@@ -9,21 +9,12 @@ var component_paths = {
 }
 
 func _ready() -> void:
-	drop_area.dropped_component.connect(assign_component)
+	drop_area.dropped_component.connect(_on_assign_component)
 
-func _on_button_pressed() -> void:
-	print("component_slot.gd: assigning test component to: " + str(self))
-	
-	# we are testing wow!
-	assign_component(component_paths[TestComponent])
-
-
-func assign_component(component_path: String):
+func _on_assign_component(component_path: String):
 	if not FileAccess.file_exists(component_path):
 		print("ERROR component_slot.gd: COMPONENT PATH IS NOT LISTED CORRECTLY IN DICTIONARY")
 	
 	# create component and set its parent to me!
 	current_component = load(component_paths[TestComponent]).instantiate()
 	self.add_child(current_component)
-	
-	
