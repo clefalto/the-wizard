@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8pwwbq8gcys"]
+[gd_scene load_steps=19 format=3 uid="uid://c8pwwbq8gcys"]
 
 [ext_resource type="Script" uid="uid://bo5cehnr8ouoj" path="res://scenes/test/three_dimensions.gd" id="1_dykvc"]
 [ext_resource type="Script" uid="uid://0nujdwd05ef3" path="res://scenes/flipper/flipper_3d.gd" id="1_xo0s0"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_avw3x"]
 size = Vector3(7.5, 0.25, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyqpo"]
+albedo_color = Color(0.47, 0.3337, 0.335972, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tnmc"]
 friction = 0.1
@@ -59,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94675, 0.581896, 0.513353)
 [node name="BaseBoard" type="MeshInstance3D" parent="Playfield"]
 mesh = SubResource("BoxMesh_avw3x")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyqpo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/BaseBoard"]
 physics_material_override = SubResource("PhysicsMaterial_7tnmc")
@@ -144,7 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12091)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14281, 0)
-light_energy = 2.986
+light_energy = 5.087
 light_indirect_energy = 1.97
 omni_range = 10.2
 

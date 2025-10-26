@@ -12,8 +12,7 @@
 [node name="Board" parent="." instance=ExtResource("1_iuonh")]
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(-1.80705e-08, -0.910547, 0.413406, -3.98012e-08, 0.413406, 0.910547, -1, -2.66454e-14, -4.37113e-08, 3.03328, 5.60211, -2.78585)
-projection = 1
+transform = Transform3D(-7.52566e-08, -0.910547, 0.413406, -3.98012e-08, 0.413406, 0.910547, -1, 5.20706e-08, -6.73524e-08, 3.033, 5.602, 0)
 size = 8.0
 
 [node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]
@@ -25,27 +24,31 @@ script = ExtResource("3_ow5a4")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 149.0
+offset_top = 129.0
+offset_right = 189.0
+offset_bottom = 169.0
 
 [node name="ScoreboardUI" parent="Control" instance=ExtResource("3_k2fmo")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 427.0
-offset_right = 599.0
+offset_left = 777.0
+offset_top = -115.0
+offset_right = 949.0
+offset_bottom = -15.0
 
 [node name="ShopUI" parent="Control" instance=ExtResource("4_l3cfh")]
 layout_mode = 1
-offset_left = 153.0
-offset_top = 160.0
-offset_right = 153.32
-offset_bottom = 160.0
+offset_left = -10.0
+offset_top = 15.0
+offset_right = -9.67999
+offset_bottom = 15.0
 
 [node name="InventoryUI" parent="Control" instance=ExtResource("3_l3cfh")]
 layout_mode = 1
-offset_left = 506.0
-offset_top = 158.0
-offset_right = 506.0
-offset_bottom = 158.0
+offset_left = 856.0
+offset_top = 43.0
+offset_right = 856.0
+offset_bottom = 43.0
