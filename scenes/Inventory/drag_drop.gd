@@ -10,7 +10,8 @@ func _ready() -> void:
 func _get_drag_data(_at_position: Vector2) -> String:
 	#print("drag_drop.gd: dragging new item")
 	
-	var cpb := ColorPickerButton.new()
+	# create a preview for the dragging
+	var cpb := ColorRect.new()
 	cpb.color = Color("#00b1b1")
 	cpb.size = Vector2(25.0, 25.0)
 
@@ -22,7 +23,7 @@ func _get_drag_data(_at_position: Vector2) -> String:
 	# Sets what the user will see they are dragging.
 	set_drag_preview(preview)
 	
-	print("drag_drop.gd test: " + str(slot_number))
+	# tell the inventory that we are dragging the item from THIS slot
 	inventory._on_dragging_item(slot_number)
 	return ""
 

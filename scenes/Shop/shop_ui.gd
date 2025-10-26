@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 
 func _on_item_bought(item: Item):
-	print("shop_ui.gd: buying: " + str(item))
+	#print("shop_ui.gd: buying: " + str(item))
 	
 	var new_item = item.duplicate()
 	for i in new_item.get_children():

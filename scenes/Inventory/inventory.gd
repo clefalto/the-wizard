@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# test component drag stuff
-	#print("inventory_ui.gd: TESTING DRAGGED ITEM: " + GlobalComponent.component_drag + "\t\t" + str(GlobalComponent.component_preview))
+	#print("inventory_ui.gd: TESTING DRAGGED ITEM: " + str(GlobalComponent.dragged_component_scene))
 	
 	# reset dragged item global stuff
 	if GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
@@ -17,14 +17,9 @@ func _process(delta: float) -> void:
 
 # dragging and dropping item component to board
 func _on_dragging_item(slot: int):
-	if inventory[slot] == null:
-		return
-	
-	if inventory[slot] is not ItemComponent:
-		return
-	
-	print("inventory.gd: dragging this item: " + str(inventory[slot].component_scene))
-	GlobalComponent.dragged_component_scene = inventory[slot].component_scene
+	if inventory[slot] is ItemComponent:
+		#print("inventory.gd: dragging this item: " + str(inventory[slot].component_scene))
+		GlobalComponent.dragged_component_scene = inventory[slot].component_scene
 
 func _on_bought_item(item: Item):
 	#check inventory for open slots
