@@ -11,10 +11,7 @@ var component_paths = {
 func _ready() -> void:
 	drop_area.dropped_component.connect(_on_assign_component)
 
-func _on_assign_component(component_path: String):
-	if not FileAccess.file_exists(component_path):
-		print("ERROR component_slot.gd: COMPONENT PATH IS NOT LISTED CORRECTLY IN DICTIONARY")
-	
+func _on_assign_component(component_scene: PackedScene):
 	# create component and set its parent to me!
-	current_component = load(component_paths[TestComponent]).instantiate()
+	current_component = component_scene.instantiate()
 	self.add_child(current_component)

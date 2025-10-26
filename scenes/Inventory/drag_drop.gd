@@ -23,7 +23,7 @@ func _get_drag_data(_at_position: Vector2) -> String:
 	set_drag_preview(preview)
 	
 	print("drag_drop.gd test: " + str(slot_number))
-	inventory._on_dragging_item(slot_number, preview)
+	inventory._on_dragging_item(slot_number)
 	return ""
 
 

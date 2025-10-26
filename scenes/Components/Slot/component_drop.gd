@@ -9,7 +9,7 @@ var last_event_time := -1.0 # time of the last event in seconds
 @onready var node_quad: MeshInstance3D = $Quad
 @onready var node_area: Area3D = $Quad/Area3D
 
-signal dropped_component(component: String)
+signal dropped_component(component: PackedScene)
 
 var held_component = null
 
@@ -19,10 +19,10 @@ func _ready() -> void:
 	node_area.input_event.connect(_mouse_input_event)
 
 func _process(delta: float) -> void:
-	if is_mouse_inside and GlobalComponent.component_drag != "" and Input.is_action_just_released("MB_LEFT"):
-		print("dropped: " + GlobalComponent.component_drag)
+	if is_mouse_inside and GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
+		print("component_drop.dg: dropped: " + str(GlobalComponent.dragged_component_scene))
 		
-		dropped_component.emit(GlobalComponent.component_drag)
+		dropped_component.emit(GlobalComponent.dragged_component_scene)
 
 #region mouse inputs
 
