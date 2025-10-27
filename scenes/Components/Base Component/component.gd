@@ -24,20 +24,12 @@ func _ready() -> void:
 			if i is MeshInstance3D:
 				var mesh_aabb = i.get_aabb()
 				total_height += mesh_aabb.size.y
-				print("component.gd: mesh height: ", total_height)
+				#print("component.gd: mesh height: ", total_height)
 	
-	# move buttons
+	# move buttons and face camera
 	destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
-	
-	print("rot: ", destroy_buttons.rotation)
-	
 	destroy_buttons.look_at(camera.global_position)
-	
-	print("rot: ", destroy_buttons.rotation)
-	
 	destroy_buttons.rotation += Vector3(deg_to_rad(90), deg_to_rad(0), deg_to_rad(180))
-	
-	print("rot: ", destroy_buttons.rotation)
 
 
 func _on_destroy_button_pressed() -> void:
