@@ -23,7 +23,6 @@ func _on_assign_component(component_scene: Item):
 	inventory._on_successful_item_drop()
 
 func _on_slot_freed() -> void:
-	print("wowie!")
 	current_component.queue_free()
 	current_component = null
 	drop_area.visible = true

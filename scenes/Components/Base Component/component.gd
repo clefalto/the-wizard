@@ -52,8 +52,15 @@ func _on_destroy_button_pressed() -> void:
 	free_slot.emit()
 
 func _on_send_button_pressed() -> void:
-	print("component.gd: sending back to inventory")
-	print("check item: ", item_backup)
+	#print("component.gd: sending back to inventory", "check item: ", item_backup)
+	
+	if item_backup == null:
+		return
+	
+	# see if inventory slot available
+	if inventory._on_bought_item(item_backup.duplicate()):
+		#print("bought!")
+		free_slot.emit()
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:

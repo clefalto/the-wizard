@@ -39,11 +39,11 @@ func _on_bought_item(item: Item) -> bool:
 			# update UI
 			inventory_ui._on_set_item(i, item.item_name)
 			#print(inventory)
-			return false
+			return true
 	
 	print("inventory.gd: inventory full!")
 	item.queue_free()
-	return true
+	return false
 
 func _on_destroy_item(slot: int):
 	#print("destroying: " + str(slot))
