@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func _on_dragging_item(slot: int):
 	if inventory[slot] is ItemComponent:
 		#print("inventory.gd: dragging this item: " + str(inventory[slot].component_scene))
-		GlobalComponent.dragged_component_scene = inventory[slot].component_scene
+		GlobalComponent.dragged_component_scene = inventory[slot].duplicate()
 		GlobalComponent.dragged_inventory_slot = slot
 
 # we've dropped an item wowie
@@ -28,7 +28,7 @@ func _on_successful_item_drop():
 	_on_destroy_item(GlobalComponent.dragged_inventory_slot)
 
 # buy and kill items
-func _on_bought_item(item: Item):
+func _on_bought_item(item: Item) -> bool:
 	#check inventory for open slots
 	for i in range(inventory.size()):
 		if inventory[i] == null:
@@ -39,10 +39,11 @@ func _on_bought_item(item: Item):
 			# update UI
 			inventory_ui._on_set_item(i, item.item_name)
 			#print(inventory)
-			return
+			return false
 	
 	print("inventory.gd: inventory full!")
 	item.queue_free()
+	return true
 
 func _on_destroy_item(slot: int):
 	#print("destroying: " + str(slot))

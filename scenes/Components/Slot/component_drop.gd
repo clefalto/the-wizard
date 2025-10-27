@@ -1,6 +1,6 @@
 extends ViewportMouseInput
 
-signal dropped_component(component: PackedScene)
+signal dropped_component(component: Item)
 
 var held_component = null
 

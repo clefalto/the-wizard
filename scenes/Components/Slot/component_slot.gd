@@ -12,9 +12,18 @@ var component_paths = {
 func _ready() -> void:
 	drop_area.dropped_component.connect(_on_assign_component)
 
-func _on_assign_component(component_scene: PackedScene):
+func _on_assign_component(component_scene: Item):
 	# create component and set its parent to me!
-	current_component = component_scene.instantiate()
+	current_component = component_scene.component_scene.instantiate()
+	current_component.item_backup = component_scene
+	current_component.free_slot.connect(_on_slot_freed)
 	drop_area.visible = false
+	
 	self.add_child(current_component)
 	inventory._on_successful_item_drop()
+
+func _on_slot_freed() -> void:
+	print("wowie!")
+	current_component.queue_free()
+	current_component = null
+	drop_area.visible = true

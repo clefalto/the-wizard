@@ -5,10 +5,14 @@ class_name Component extends Node
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 @onready var destroy_buttons = $DestroyButtons
 @onready var menu_button = $MenuButton
+@export var item_backup: Item = null
 
 # used to calculate where to put buttons
 @export var component_object: Node = null
 @export var destroy_button_offset: float = 1
+
+# signal
+signal free_slot()
 
 ## does nothing, but lets you polymorphically (idk if that's a word) call trigger on any component. will be useful
 ## when force-triggering components with other components and effects and things
@@ -45,9 +49,11 @@ func _process(delta: float) -> void:
 
 func _on_destroy_button_pressed() -> void:
 	print("component.gd: destroyed")
+	free_slot.emit()
 
 func _on_send_button_pressed() -> void:
 	print("component.gd: sending back to inventory")
+	print("check item: ", item_backup)
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:
