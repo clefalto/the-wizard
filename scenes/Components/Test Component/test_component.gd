@@ -2,7 +2,7 @@ class_name TestComponent extends Component
 
 @export var points = 200
 
-@onready var points_label = $PointsLabel
+@onready var points_label = $StaticBody3D/PointsLabel
 
 func _ready() -> void:
 	points_label.text = str(points)
