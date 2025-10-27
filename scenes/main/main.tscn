@@ -55,4 +55,4 @@ offset_right = 856.0
 offset_bottom = 43.0
 
 [node name="TestComponent" parent="." instance=ExtResource("7_hujxm")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.28391, 0, 3.95621)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.57805, 0.124291, 0.765452)

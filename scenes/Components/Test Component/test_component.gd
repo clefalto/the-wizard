@@ -2,9 +2,10 @@ class_name TestComponent extends Component
 
 @export var points = 200
 
-@onready var points_label = $StaticBody3D/PointsLabel
+@onready var points_label = $TestBumper/PointsLabel
 
 func _ready() -> void:
+	super._ready()
 	points_label.text = str(points)
 
 func trigger():

@@ -15,7 +15,7 @@ albedo_color = Color(0, 1, 1, 1)
 points = PackedVector3Array(0, -0.5, -1, -0.0980814, -0.5, -0.995301, 0, 0.5, -1, 0.0978857, -0.5, -0.995301, -0.0980814, 0.5, -0.995301, -0.195184, -0.5, -0.980814, 0.0978857, 0.5, -0.995301, 0.194988, -0.5, -0.980814, -0.195184, 0.5, -0.980814, -0.290329, -0.5, -0.957126, 0.194988, 0.5, -0.980814, 0.290133, -0.5, -0.957126, -0.290329, 0.5, -0.957126, -0.382733, -0.5, -0.924041, 0.290133, 0.5, -0.957126, 0.382537, -0.5, -0.924041, -0.382733, 0.5, -0.924041, -0.471417, -0.5, -0.88195, 0.382537, 0.5, -0.924041, 0.471222, -0.5, -0.88195, -0.471417, 0.5, -0.88195, -0.555599, -0.5, -0.831637, 0.471222, 0.5, -0.88195, 0.555403, -0.5, -0.831637, -0.555599, 0.5, -0.831637, -0.634495, -0.5, -0.773101, 0.555403, 0.5, -0.831637, 0.634299, -0.5, -0.773101, -0.634495, 0.5, -0.773101, -0.707126, -0.5, -0.707126, 0.634299, 0.5, -0.773101, 0.70693, -0.5, -0.707126, -0.707126, 0.5, -0.707126, -0.773101, -0.5, -0.634495, 0.70693, 0.5, -0.707126, 0.772905, -0.5, -0.634495, -0.773101, 0.5, -0.634495, -0.831637, -0.5, -0.555599, 0.772905, 0.5, -0.634495, 0.831441, -0.5, -0.555599, -0.831637, 0.5, -0.555599, -0.88195, -0.5, -0.471417, 0.831441, 0.5, -0.555599, 0.881754, -0.5, -0.471417, -0.88195, 0.5, -0.471417, -0.924041, -0.5, -0.382733, 0.881754, 0.5, -0.471417, 0.923845, -0.5, -0.382733, -0.924041, 0.5, -0.382733, -0.957126, -0.5, -0.290329, 0.923845, 0.5, -0.382733, 0.95693, -0.5, -0.290329, -0.957126, 0.5, -0.290329, -0.980814, -0.5, -0.195184, 0.95693, 0.5, -0.290329, 0.980619, -0.5, -0.195184, -0.980814, 0.5, -0.195184, -0.995301, -0.5, -0.0980814, 0.980619, 0.5, -0.195184, 0.995106, -0.5, -0.0980814, -0.995301, 0.5, -0.0980814, -1, -0.5, 0, 0.995106, 0.5, -0.0980814, 1, -0.5, 0, -1, 0.5, 0, -0.995301, -0.5, 0.0978857, 1, 0.5, 0, 0.995106, -0.5, 0.0978857, -0.995301, 0.5, 0.0978857, -0.980814, -0.5, 0.194988, 0.995106, 0.5, 0.0978857, 0.980619, -0.5, 0.194988, -0.980814, 0.5, 0.194988, -0.957126, -0.5, 0.290133, 0.980619, 0.5, 0.194988, 0.95693, -0.5, 0.290133, -0.957126, 0.5, 0.290133, -0.924041, -0.5, 0.382537, 0.95693, 0.5, 0.290133, 0.923845, -0.5, 0.382537, -0.924041, 0.5, 0.382537, -0.88195, -0.5, 0.471222, 0.923845, 0.5, 0.382537, 0.881754, -0.5, 0.471222, -0.88195, 0.5, 0.471222, -0.831637, -0.5, 0.555403, 0.881754, 0.5, 0.471222, 0.831441, -0.5, 0.555403, -0.831637, 0.5, 0.555403, -0.773101, -0.5, 0.634299, 0.831441, 0.5, 0.555403, 0.772905, -0.5, 0.634299, -0.773101, 0.5, 0.634299, -0.707126, -0.5, 0.70693, 0.772905, 0.5, 0.634299, 0.70693, -0.5, 0.70693, -0.707126, 0.5, 0.70693, -0.634495, -0.5, 0.772905, 0.70693, 0.5, 0.70693, 0.634299, -0.5, 0.772905, -0.634495, 0.5, 0.772905, -0.555599, -0.5, 0.831441, 0.634299, 0.5, 0.772905, 0.555403, -0.5, 0.831441, -0.555599, 0.5, 0.831441, -0.471417, -0.5, 0.881754, 0.555403, 0.5, 0.831441, 0.471222, -0.5, 0.881754, -0.471417, 0.5, 0.881754, -0.382733, -0.5, 0.923845, 0.471222, 0.5, 0.881754, 0.382537, -0.5, 0.923845, -0.382733, 0.5, 0.923845, -0.290329, -0.5, 0.95693, 0.382537, 0.5, 0.923845, 0.290133, -0.5, 0.95693, -0.290329, 0.5, 0.95693, -0.195184, -0.5, 0.980619, 0.290133, 0.5, 0.95693, 0.194988, -0.5, 0.980619, -0.195184, 0.5, 0.980619, -0.0980814, -0.5, 0.995106, 0.194988, 0.5, 0.980619, 0.0978857, -0.5, 0.995106, -0.0980814, 0.5, 0.995106, 0, -0.5, 1, 0.0978857, 0.5, 0.995106, 0, 0.5, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rnk37"]
-viewport_path = NodePath("Destroy/SubViewport")
+viewport_path = NodePath("DestroyButtons/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_it08i"]
 resource_local_to_scene = true
@@ -23,34 +23,33 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_rnk37")
 
-[node name="TestComponent" instance=ExtResource("1_rnk37")]
+[node name="TestComponent" node_paths=PackedStringArray("component_object") instance=ExtResource("1_rnk37")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_cwexv")
 points = 200
+component_object = NodePath("TestBumper")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+[node name="TestBumper" type="StaticBody3D" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBumper" index="0"]
 mesh = SubResource("CylinderMesh_it08i")
 surface_material_override/0 = SubResource("StandardMaterial3D_8vduw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBumper" index="1"]
 shape = SubResource("ConvexPolygonShape3D_rnk37")
 
-[node name="PointsLabel" type="Label3D" parent="StaticBody3D" index="2"]
-transform = Transform3D(1.13133e-08, -0.965926, -0.258819, -4.2222e-08, -0.258819, 0.965926, -1, 0, -4.37114e-08, 0, 0.633536, 0)
+[node name="PointsLabel" type="Label3D" parent="TestBumper" index="2"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0.6, 0)
 text = "200"
 font_size = 128
 
-[node name="Area3D" type="Area3D" parent="StaticBody3D" index="3"]
+[node name="Area3D" type="Area3D" parent="TestBumper" index="3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBumper/Area3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_rnk37")
 
-[node name="Destroy" parent="." index="1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.45042, 0.574321, 0)
-
-[node name="Quad" parent="Destroy" index="1"]
+[node name="Quad" parent="DestroyButtons" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_it08i")
 
-[connection signal="body_entered" from="StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="TestBumper/Area3D" to="." method="_on_area_3d_body_entered"]
