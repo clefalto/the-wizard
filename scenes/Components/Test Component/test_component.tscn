@@ -42,8 +42,15 @@ transform = Transform3D(1.13133e-08, -0.965926, -0.258819, -4.2222e-08, -0.25881
 text = "200"
 font_size = 128
 
+[node name="Area3D" type="Area3D" parent="StaticBody3D" index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_rnk37")
+
 [node name="Node3D" parent="." index="1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.39488, 0.748615, 0)
 
 [node name="Quad" parent="Node3D" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wtj2w")
+
+[connection signal="body_entered" from="StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
