@@ -23,6 +23,7 @@ func trigger():
 
 func _ready() -> void:
 	# get main component mesh height
+	# will likely need to be changed later with more complicated stuff
 	var total_height = 0
 	if component_object != null:
 		for i in component_object.get_children():
@@ -58,6 +59,8 @@ func _on_send_button_pressed() -> void:
 		return
 	
 	# see if inventory slot available
+	# NEEDS TO BE A DUPLICATE!!! the inventory bought function queue frees the item since it
+	# assumes that the item passed in is a dupe
 	if inventory._on_bought_item(item_backup.duplicate()):
 		#print("bought!")
 		free_slot.emit()
