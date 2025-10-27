@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj0sh7xht0dak"]
+[gd_scene load_steps=11 format=3 uid="uid://bj0sh7xht0dak"]
 
 [ext_resource type="Script" uid="uid://dehkimwkr3pso" path="res://scenes/Components/Base Component/component.gd" id="1_8rr4d"]
 [ext_resource type="Script" uid="uid://ml5vy6n1wykh" path="res://scenes/mechanics/viewport_mouse_input.gd" id="2_4gs6l"]
@@ -17,6 +17,21 @@ albedo_texture = SubResource("ViewportTexture_mvy5i")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8cimb"]
 data = PackedVector3Array(2, 0, 1, -2, 0, 1, 2, 0, -1, -2, 0, 1, -2, 0, -1, 2, 0, -1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mvy5i"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p4cmf"]
+viewport_path = NodePath("MenuButton/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cimb"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.223529)
+albedo_texture = SubResource("ViewportTexture_p4cmf")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4gs6l"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [node name="ComponentBase" type="Node3D"]
 script = ExtResource("1_8rr4d")
@@ -125,5 +140,37 @@ input_capture_on_drag = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DestroyButtons/Quad/Area3D"]
 shape = SubResource("ConcavePolygonShape3D_8cimb")
 
+[node name="MenuButton" type="Node3D" parent="." node_paths=PackedStringArray("node_viewport", "node_quad", "node_area")]
+script = ExtResource("2_4gs6l")
+node_viewport = NodePath("SubViewport")
+node_quad = NodePath("Quad")
+node_area = NodePath("Quad/Area3D")
+
+[node name="SubViewport" type="SubViewport" parent="MenuButton"]
+gui_embed_subwindows = true
+size = Vector2i(50, 50)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="MenuButton/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="MenuButton" type="Button" parent="MenuButton/SubViewport/Control"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="Quad" type="MeshInstance3D" parent="MenuButton"]
+mesh = SubResource("PlaneMesh_mvy5i")
+surface_material_override/0 = SubResource("StandardMaterial3D_8cimb")
+
+[node name="Area3D" type="Area3D" parent="MenuButton/Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuButton/Quad/Area3D"]
+shape = SubResource("ConcavePolygonShape3D_4gs6l")
+
 [connection signal="pressed" from="DestroyButtons/SubViewport/GUI/HBoxContainer/Destroy/DestroyButton" to="." method="_on_destroy_button_pressed"]
 [connection signal="pressed" from="DestroyButtons/SubViewport/GUI/HBoxContainer/Send/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="MenuButton/SubViewport/Control/MenuButton" to="." method="_on_menu_button_pressed"]

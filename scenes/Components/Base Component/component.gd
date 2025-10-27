@@ -4,6 +4,7 @@ class_name Component extends Node
 @onready var inventory = get_tree().get_first_node_in_group("Inventory")
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 @onready var destroy_buttons = $DestroyButtons
+@onready var menu_button = $MenuButton
 
 # used to calculate where to put buttons
 @export var component_object: Node = null
@@ -26,14 +27,32 @@ func _ready() -> void:
 				total_height += mesh_aabb.size.y
 				#print("component.gd: mesh height: ", total_height)
 	
+	# move menu button and set signals
+	menu_button.position += Vector3(0, total_height, 0)
+	
 	# move buttons and face camera
 	destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
 	destroy_buttons.look_at(camera.global_position)
 	destroy_buttons.rotation += Vector3(deg_to_rad(90), deg_to_rad(0), deg_to_rad(180))
+	
+	# set destroy_buttons invisible
+	destroy_buttons.visible = false
 
+func _process(delta: float) -> void:
+	# check if the mouse is outside of the menu button, destroy buttons, and left click
+	if !destroy_buttons.is_mouse_inside and !menu_button.is_mouse_inside and Input.is_action_just_pressed("MB_LEFT"):
+		_on_close_menu()
 
 func _on_destroy_button_pressed() -> void:
 	print("component.gd: destroyed")
 
 func _on_send_button_pressed() -> void:
 	print("component.gd: sending back to inventory")
+
+# opening the mini menu
+func _on_menu_button_pressed() -> void:
+	destroy_buttons.set_visible(true)
+
+# close the mini menu
+func _on_close_menu() -> void:
+	destroy_buttons.set_visible(false)
