@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		_on_close_menu()
 
 func _on_destroy_button_pressed() -> void:
-	print("component.gd: destroyed")
+	#print("component.gd: destroyed")
 	free_slot.emit()
 
 func _on_send_button_pressed() -> void:

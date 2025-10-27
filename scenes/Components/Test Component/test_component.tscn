@@ -59,6 +59,9 @@ font_size = 128
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBumper/Area3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_rnk37")
 
+[node name="DestroyButtons" parent="." index="1"]
+transform = Transform3D(0.749995, -0.00093315, 0.00248236, 0.000936624, 0.749999, -0.00105213, -0.00248105, 0.00105521, 0.749995, 0, 0, 0)
+
 [node name="Quad" parent="DestroyButtons" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_it08i")
 
