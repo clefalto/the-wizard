@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://ml5vy6n1wykh" path="res://scenes/mechanics/viewport_mouse_input.gd" id="2_4gs6l"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1k41g"]
+size = Vector2(4, 2)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4gs6l"]
-viewport_path = NodePath("Node3D/SubViewport")
+viewport_path = NodePath("Destroy/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvy5i"]
 resource_local_to_scene = true
@@ -14,83 +15,110 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_4gs6l")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g38dv"]
-points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gs6l"]
+size = Vector3(4, 0.2, 2)
 
 [node name="ComponentBase" type="Node3D"]
 script = ExtResource("1_8rr4d")
 
-[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("node_viewport", "node_quad", "node_area")]
+[node name="Destroy" type="Node3D" parent="." node_paths=PackedStringArray("node_viewport", "node_quad", "node_area")]
 script = ExtResource("2_4gs6l")
 node_viewport = NodePath("SubViewport")
 node_quad = NodePath("Quad")
 node_area = NodePath("Quad/Area3D")
 
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
+[node name="SubViewport" type="SubViewport" parent="Destroy"]
 gui_embed_subwindows = true
-size = Vector2i(70, 70)
+size = Vector2i(145, 70)
 render_target_update_mode = 4
 
-[node name="GUI" type="Control" parent="Node3D/SubViewport"]
+[node name="GUI" type="Control" parent="Destroy/SubViewport"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 145.0
+offset_bottom = 70.0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Destroy/SubViewport/GUI"]
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 70.0
+theme_override_constants/separation = 5
+
+[node name="Destroy" type="Control" parent="Destroy/SubViewport/GUI/HBoxContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Destroy/SubViewport/GUI/HBoxContainer/Destroy"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.390788, 0.137148, 0.0851004, 1)
+
+[node name="DestroyButton" type="Button" parent="Destroy/SubViewport/GUI/HBoxContainer/Destroy"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
 offset_right = 70.0
 offset_bottom = 70.0
 
-[node name="ColorRect" type="ColorRect" parent="Node3D/SubViewport/GUI"]
-custom_minimum_size = Vector2(50, 50)
+[node name="Label" type="Label" parent="Destroy/SubViewport/GUI/HBoxContainer/Destroy"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 35.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.774422, 0.112559, 0, 0.32549)
-
-[node name="DestroyButton" type="Button" parent="Node3D/SubViewport/GUI"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -25.0
-offset_right = 35.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Node3D/SubViewport/GUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.5
+offset_left = -29.5
 offset_top = -11.5
-offset_right = 30.5
+offset_right = 29.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Destroy"
+text = "destroy"
 
-[node name="Quad" type="MeshInstance3D" parent="Node3D"]
+[node name="Send" type="Control" parent="Destroy/SubViewport/GUI/HBoxContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Destroy/SubViewport/GUI/HBoxContainer/Send"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.286009, 0.282831, 0, 1)
+
+[node name="SendButton" type="Button" parent="Destroy/SubViewport/GUI/HBoxContainer/Send"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+
+[node name="Label" type="Label" parent="Destroy/SubViewport/GUI/HBoxContainer/Send"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -24.5
+offset_right = 20.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "send
+back"
+
+[node name="Quad" type="MeshInstance3D" parent="Destroy"]
 mesh = SubResource("PlaneMesh_1k41g")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mvy5i")
 
-[node name="Area3D" type="Area3D" parent="Node3D/Quad"]
+[node name="Area3D" type="Area3D" parent="Destroy/Quad"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Quad/Area3D"]
-shape = SubResource("ConvexPolygonShape3D_g38dv")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Destroy/Quad/Area3D"]
+shape = SubResource("BoxShape3D_4gs6l")
 
-[connection signal="pressed" from="Node3D/SubViewport/GUI/DestroyButton" to="." method="_on_destroy_button_pressed"]
+[connection signal="pressed" from="Destroy/SubViewport/GUI/HBoxContainer/Destroy/DestroyButton" to="." method="_on_destroy_button_pressed"]
+[connection signal="pressed" from="Destroy/SubViewport/GUI/HBoxContainer/Send/SendButton" to="." method="_on_send_button_pressed"]

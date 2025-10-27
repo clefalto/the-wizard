@@ -42,6 +42,7 @@ func _on_bought_item(item: Item):
 			return
 	
 	print("inventory.gd: inventory full!")
+	item.queue_free()
 
 func _on_destroy_item(slot: int):
 	#print("destroying: " + str(slot))

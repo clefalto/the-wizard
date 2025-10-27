@@ -13,3 +13,6 @@ func trigger():
 
 func _on_destroy_button_pressed() -> void:
 	print("component.gd: destroyed")
+
+func _on_send_button_pressed() -> void:
+	print("component.gd: sending back to inventory")
