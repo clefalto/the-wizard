@@ -37,22 +37,21 @@ func _ready() -> void:
 	
 	# move buttons and face camera
 	destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
-	#destroy_buttons.look_at(camera.position)
-	destroy_buttons.rotation += Vector3(deg_to_rad(90), deg_to_rad(90), deg_to_rad(0))
+	destroy_buttons.look_at(camera.position)
+	destroy_buttons.rotation += Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0))
 	
 	# set destroy_buttons invisible
 	destroy_buttons.visible = false
 	
 	#region set signals between components
-	# get menu button
-	var menu_button_button: Button = menu_button.node_viewport_control_instance.interactables["menu_button"]
+	var menu_button_button: Button = menu_button.get_interactables()["menu_button"]
 	menu_button_button.pressed.connect(_on_menu_button_pressed)
 	#print("check: ", menu_button_button)
 	
-	var destroy_button: Button = destroy_buttons.node_viewport_control_instance.interactables["destroy_button"]
-	var send_button: Button = destroy_buttons.node_viewport_control_instance.interactables["send_button"]
+	var destroy_button: Button = destroy_buttons.get_interactables()["destroy_button"]
+	var send_button: Button = destroy_buttons.get_interactables()["send_button"]
 	destroy_button.pressed.connect(_on_destroy_button_pressed)
-	destroy_button.pressed.connect(_on_send_button_pressed)
+	send_button.pressed.connect(_on_send_button_pressed)
 	
 	#endregion
 	
@@ -81,7 +80,7 @@ func _on_send_button_pressed() -> void:
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:
-	print("PRESSED MENU BUTTON!")
+	#print("PRESSED MENU BUTTON!")
 	destroy_buttons.set_visible(true)
 
 # close the mini menu

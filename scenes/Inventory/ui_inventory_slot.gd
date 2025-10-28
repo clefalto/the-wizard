@@ -26,4 +26,4 @@ func set_item(item: String):
 
 # kill button
 func _on_button_pressed() -> void:
-	inventory._on_destroy_item(slot_number) # tell inventory to kill item
+	inventory._on_remove_item_from_inventory(slot_number) # tell inventory to kill item

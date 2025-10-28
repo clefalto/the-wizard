@@ -25,7 +25,7 @@ func _on_dragging_item(slot: int):
 
 # we've dropped an item wowie
 func _on_successful_item_drop():
-	_on_destroy_item(GlobalComponent.dragged_inventory_slot)
+	_on_remove_item_from_inventory(GlobalComponent.dragged_inventory_slot)
 
 # buy and kill items
 func _on_bought_item(item: Item) -> bool:
@@ -45,7 +45,7 @@ func _on_bought_item(item: Item) -> bool:
 	item.queue_free()
 	return false
 
-func _on_destroy_item(slot: int):
+func _on_remove_item_from_inventory(slot: int):
 	#print("destroying: " + str(slot))
 	if inventory[slot]:
 		inventory_ui._on_set_item(slot, "")

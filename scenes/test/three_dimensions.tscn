@@ -157,6 +157,6 @@ omni_range = 10.2
 environment = SubResource("Environment_avw3x")
 
 [node name="TestComponent" parent="." instance=ExtResource("6_187xg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.99959, 0.194969, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.73874, 0, 0)
 
 [connection signal="body_entered" from="Playfield/BallResetArea" to="Playfield/BallResetArea" method="_on_body_entered"]

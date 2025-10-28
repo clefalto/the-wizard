@@ -10,6 +10,7 @@ var component_paths = {
 }
 
 func _ready() -> void:
+	#print("checkign component: ", current_component)
 	drop_area.dropped_component.connect(_on_assign_component)
 
 func _on_assign_component(component_scene: Item):
@@ -21,8 +22,14 @@ func _on_assign_component(component_scene: Item):
 	
 	self.add_child(current_component)
 	inventory._on_successful_item_drop()
+	
+	#print("checkign component: ", current_component)
+
+#func _process(delta: float) -> void:
+	#print("checkign component: ", current_component)
 
 func _on_slot_freed() -> void:
+	#print("checkign component: ", current_component)
 	current_component.queue_free()
 	current_component = null
 	drop_area.visible = true

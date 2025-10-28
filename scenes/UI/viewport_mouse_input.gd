@@ -27,7 +27,7 @@ func _ready() -> void:
 	node_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	node_viewport.transparent_bg = true
 	#print("CONTROL: ", control_size)
-	print(self, " viewport size: ", node_viewport.size)
+	#print(self, " viewport size: ", node_viewport.size)
 	
 	# set quad sizes
 	# get ratio of viewport
@@ -35,8 +35,8 @@ func _ready() -> void:
 	
 	# set quad and collision box dimensions based on ratio
 	node_quad.mesh.size.x = node_quad.mesh.size.y * viewport_x_y_ratio
-	node_collision.shape.size = Vector3(node_quad.mesh.size.x, 0.1, node_quad.mesh.size.y)
-	print("Quad size:", node_quad.mesh.size, "Area3d size: ", node_collision.shape.size)
+	node_collision.shape.size = Vector3(node_quad.mesh.size.x, 0.01, node_quad.mesh.size.y)
+	#print("Quad size:", node_quad.mesh.size, "Area3d size: ", node_collision.shape.size)
 	
 	# set quad texture to viewport
 	var viewport_material:= StandardMaterial3D.new()
@@ -162,5 +162,8 @@ func _mouse_input_event(_camera: Camera3D, input_event: InputEvent, event_positi
 	# send processed input to the viewport
 	node_viewport.push_input(input_event)
 
-
 #endregion
+
+# other
+func get_interactables() -> Dictionary[String, Control]:
+	return node_viewport_control_instance.interactables
