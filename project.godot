@@ -29,6 +29,7 @@ ball=""
 ScoreManager=""
 Inventory=""
 Camera=""
+BallManager=""
 
 [input]
 
