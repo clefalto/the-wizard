@@ -1,33 +1,53 @@
-class_name ViewportMouseInput extends Node
+class_name ViewportMouseInput extends Node3D
 
 # taken from godot examples
 var is_mouse_inside: bool = false # check if mouse is in area3d
 var last_event_pos2D := Vector2() # the last processed input event, used to calculate relative movement
 var last_event_time := -1.0 # time of the last event in seconds
 
-@export var node_viewport: SubViewport = null
-@export var node_quad: MeshInstance3D = null
-@export var node_area: Area3D = null
+@export var node_viewport_control: PackedScene
+@onready var node_viewport: SubViewport = $SubViewport
+@onready var node_quad: MeshInstance3D = $Quad
+@onready var node_area: Area3D = $Quad/Area3D
+@onready var node_collision: CollisionShape3D = $Quad/Area3D/CollisionShape3D
+var node_viewport_control_instance = null
 
 func _ready() -> void:
-	var is_safe: bool = true
+	# make a new mesh and collision box
+	node_quad.mesh = PlaneMesh.new()
+	node_collision.shape = BoxShape3D.new()
 	
-	# node var checks
-	if node_viewport == null:
-		print(str(self) + ": ERROR: node_viewport UNSET")
-		is_safe = false
-	if node_quad == null:
-		print(str(self) + ": ERROR: node_quad UNSET")
-		is_safe = false
-	if node_area == null:
-		print(str(self) + ": ERROR: node_area UNSET")
-		is_safe = false
+	# instantiate the control UI scene
+	node_viewport_control_instance = node_viewport_control.instantiate()
+	node_viewport.add_child(node_viewport_control_instance)
 	
-	if !is_safe:
-		print(str(self) + ": ERROR: node var unset. freeing self.")
-		self.queue_free()
-		return
+	# viewport size
+	var control_size = node_viewport_control_instance.size
+	node_viewport.size = control_size
+	node_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	node_viewport.transparent_bg = true
+	#print("CONTROL: ", control_size)
+	print(self, " viewport size: ", node_viewport.size)
 	
+	# set quad sizes
+	# get ratio of viewport
+	var viewport_x_y_ratio: float = float(node_viewport.size.x) / float(node_viewport.size.y)
+	
+	# set quad and collision box dimensions based on ratio
+	node_quad.mesh.size.x = node_quad.mesh.size.y * viewport_x_y_ratio
+	node_collision.shape.size = Vector3(node_quad.mesh.size.x, 0.1, node_quad.mesh.size.y)
+	print("Quad size:", node_quad.mesh.size, "Area3d size: ", node_collision.shape.size)
+	
+	# set quad texture to viewport
+	var viewport_material:= StandardMaterial3D.new()
+	viewport_material.resource_local_to_scene = true
+	viewport_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	viewport_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	viewport_material.albedo_texture = node_viewport.get_texture()
+	node_quad.set_surface_override_material(0, viewport_material)
+	node_quad.material_override = viewport_material
+
+	# set signals
 	node_area.mouse_entered.connect(_mouse_entered_area)
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)

@@ -2,7 +2,7 @@ extends Node3D
 
 #@onready var camera = get_tree().get_first_node_in_group("Camera")
 var current_component = null
-@onready var drop_area = $DropArea
+@onready var drop_area = $SlotDrop
 @onready var inventory = get_tree().get_first_node_in_group("Inventory")
 
 var component_paths = {

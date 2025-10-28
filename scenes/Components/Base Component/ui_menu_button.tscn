@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgm7el4jyvgru"]
+
+[ext_resource type="Script" uid="uid://b5hutmknn4q1s" path="res://scenes/UI/viewport_control_parent.gd" id="1_kydln"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("interactables")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+script = ExtResource("1_kydln")
+interactables = {
+"menu_button": NodePath("MenuButton")
+}
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0

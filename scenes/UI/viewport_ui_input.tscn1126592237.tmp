@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhabwavnq1c5d"]
+
+[ext_resource type="Script" uid="uid://ml5vy6n1wykh" path="res://scenes/UI/viewport_mouse_input.gd" id="1_mvtau"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gs6l"]
+size = Vector3(2, 0.1, 2)
+
+[node name="ViewportInput" type="Node3D"]
+process_mode = 3
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+script = ExtResource("1_mvtau")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+gui_embed_subwindows = true
+size = Vector2i(50, 50)
+render_target_update_mode = 4
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+shape = SubResource("BoxShape3D_4gs6l")
