@@ -9,15 +9,15 @@ func _ready() -> void:
 	visible = false
 	
 	for i in item_container_parent.get_children():
-		for j in i.get_children():
+		for item in i.get_children():
+			print("test item: ", item)
 			var button = Button.new()
-			button.size = Vector2(40, 40)
-			button.set_anchors_preset(PRESET_FULL_RECT)
-			button.position = j.position
+			item.add_child(button)
+			button.size = item.size
+			button.modulate.a = 0.3
 			
-			button.pressed.connect(_on_item_bought.bind(j))
+			button.pressed.connect(_on_item_bought.bind(item))
 			
-			j.add_child(button)
 	
 
 func _process(delta: float) -> void:
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 
 func _on_item_bought(item: Item):
-	#print("shop_ui.gd: buying: " + str(item))
+	print("shop_ui.gd: buying: " + str(item))
 	
 	var new_item = item.duplicate()
 	for i in new_item.get_children():

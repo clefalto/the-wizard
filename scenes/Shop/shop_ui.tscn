@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7nybjw11hat7"]
+[gd_scene load_steps=6 format=3 uid="uid://c7nybjw11hat7"]
 
 [ext_resource type="Script" uid="uid://dyxpfaku8qyn4" path="res://scenes/Shop/shop_ui.gd" id="1_5khn6"]
-[ext_resource type="PackedScene" uid="uid://bxg56qub7pe5k" path="res://scenes/Items/ItemTestComponent.tscn" id="2_r0od5"]
+[ext_resource type="PackedScene" uid="uid://bxg56qub7pe5k" path="res://scenes/Items/Components/ItemTestComponent.tscn" id="2_r0od5"]
+[ext_resource type="PackedScene" uid="uid://cax4udyso27lq" path="res://scenes/Items/Consumables/ItemTestPointConsumable.tscn" id="3_xoxfi"]
+[ext_resource type="PackedScene" uid="uid://bwb1b2njfd2np" path="res://scenes/Items/Consumables/ItemTestMultConsumable.tscn" id="4_tvsgq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5ood"]
 font_size = 50
@@ -60,28 +62,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -33.0
-offset_right = 111.0
-offset_bottom = 33.0
+offset_left = -170.0
+offset_top = -50.0
+offset_right = 170.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(170, 50)
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="ItemTestComponent" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_r0od5")]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/ItemTestComponent"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0.396861, 0.396861, 1)
+[node name="ItemTestMultConsumable" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_tvsgq")]
+layout_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/ItemTestComponent"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 23.0
-text = "test"
+[node name="ItemTestPointConsumable" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_xoxfi")]
+layout_mode = 2
+metadata/_edit_lock_ = true
