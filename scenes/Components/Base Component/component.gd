@@ -103,6 +103,9 @@ func _on_dropped_item(item: Item):
 			effect_item.queue_free()
 		effect_item = item
 		change_appearance_from_effect()
+		
+		# delete item from inventory
+		inventory._on_successful_item_drop()
 	
 	else:
 		print("component.gd: item dropped is a component! Can't drop component on component!")
