@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cax4udyso27lq"]
 
-[ext_resource type="Script" uid="uid://hbn8uw4d2gy5" path="res://scenes/Items/Consumables/item_consumable.gd" id="1_mnjjb"]
+[ext_resource type="Script" uid="uid://13nn1ntyj7sx" path="res://scenes/Items/Consumables/item_test_point_consumable.gd" id="1_mnjjb"]
 
 [node name="ItemTestPointConsumable" type="Control"]
 custom_minimum_size = Vector2(100, 100)
@@ -17,8 +17,8 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mnjjb")
-modifier = "point_add"
-item_name = "TestPointConsumable"
+modifier = "points_add"
+effect_color = Color(0.210849, 0.669418, 0.367172, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(100, 100)

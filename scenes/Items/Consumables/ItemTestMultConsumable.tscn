@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwb1b2njfd2np"]
 
-[ext_resource type="Script" uid="uid://hbn8uw4d2gy5" path="res://scenes/Items/Consumables/item_consumable.gd" id="1_0rbsq"]
+[ext_resource type="Script" uid="uid://butgutyd5a5cn" path="res://scenes/Items/Consumables/item_test_mult_consumable.gd" id="1_0rbsq"]
 
 [node name="ItemTestMultConsumable" type="Control"]
 custom_minimum_size = Vector2(100, 100)
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0rbsq")
 modifier = "mult_add"
-item_name = "TestMultConsumable"
+effect_color = Color(0.889532, 0.244266, 0.220159, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(100, 100)

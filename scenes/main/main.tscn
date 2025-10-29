@@ -9,11 +9,11 @@
 
 [node name="Main" type="Node3D"]
 
-[node name="Board" parent="." instance=ExtResource("1_iuonh")]
-
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(-7.52566e-08, -0.910547, 0.413406, -3.98012e-08, 0.413406, 0.910547, -1, 5.20706e-08, -6.73524e-08, 3.033, 5.602, 0)
 size = 8.0
+
+[node name="Board" parent="." instance=ExtResource("1_iuonh")]
 
 [node name="ScoreManager" type="Node" parent="." groups=["ScoreManager"]]
 script = ExtResource("5_6q06x")
