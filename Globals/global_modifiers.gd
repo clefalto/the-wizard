@@ -1,6 +1,25 @@
 extends Node
 
-var modifier_list = {
-	"mult_modifier":0,
-	"point_modifier":1
+@onready var score_manager = get_tree().get_first_node_in_group("ScoreManager")
+
+var modifier_function_dictionary = {
+	"point_add":"trigger_point_add",
+	"mult_add":"trigger_mult_add",
 }
+
+func trigger(effect: String):
+	#print("global_modifiers.gd: effect triggered: ", effect)
+	# check that the trigger is real
+	if !modifier_function_dictionary.has(effect):
+		print("global_modifiers.gd: triggered effect doesn't exist in dictionary! effect: ", effect)
+	
+	# call the method linked to the effect
+	Callable(self, modifier_function_dictionary[effect]).call()
+
+func trigger_point_add():
+	var mult_to_add = 300
+	score_manager.add_points(mult_to_add)
+
+func trigger_mult_add():
+	var mult_to_add = 10
+	score_manager.add_mult(mult_to_add)

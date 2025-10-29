@@ -17,7 +17,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0rbsq")
-modifier = "mult_modifier"
+modifier = "mult_add"
 item_name = "TestMultConsumable"
 
 [node name="ColorRect2" type="ColorRect" parent="."]

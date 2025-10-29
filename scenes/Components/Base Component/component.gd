@@ -11,6 +11,9 @@ class_name Component extends Node
 @export var component_object: Node = null
 @export var destroy_button_offset: float = 1
 
+# current consumable effect item
+@onready var effect_item: ItemConsumable = null
+
 # signal
 signal free_slot()
 
@@ -18,7 +21,13 @@ signal free_slot()
 ## when force-triggering components with other components and effects and things
 ## should be overridden by inheritors with the actual behavior!!!!!!!!!
 func trigger():
-	print("triggered %s" % self)
+	# call consumable effect item trigger
+	if effect_item:
+		print("triggered %s" % self, "\twith consumable: ", effect_item)
+		effect_item.trigger()
+	else:
+		print("triggered %s" % self)
+	
 	pass
 
 func _ready() -> void:
@@ -56,7 +65,6 @@ func _ready() -> void:
 	send_button.pressed.connect(_on_send_button_pressed)
 	
 	#endregion
-	
 
 func _process(delta: float) -> void:
 	# check if the mouse is outside of the menu button, destroy buttons, and left click
@@ -84,6 +92,11 @@ func _on_send_button_pressed() -> void:
 func _on_dropped_item(item: Item):
 	if item is ItemConsumable:
 		print("component.gd: dropped consumable item: ", item)
+		
+		# delete previous consumable and set the new one
+		if effect_item:
+			effect_item.queue_free()
+		effect_item = item
 	
 	else:
 		print("component.gd: item dropped is a component! Can't drop component on component!")
