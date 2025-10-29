@@ -82,15 +82,15 @@ func _on_destroy_button_pressed() -> void:
 	free_slot.emit()
 
 func _on_send_button_pressed() -> void:
-	print("component.gd: sending back to inventory", "check item: ", item_backup)
-	if item_backup:
+	print("component.gd: sending back to inventory", "; check item: ", item_backup)
+	if !item_backup:
 		return
 	
 	# see if inventory slot available
 	# NEEDS TO BE A DUPLICATE!!! the inventory bought function queue frees the item since it
 	# assumes that the item passed in is a dupe
 	if inventory._on_bought_item(item_backup.duplicate()):
-		#print("bought!")
+		print("bought!")
 		free_slot.emit()
 
 # dropped item on top of the menu button
@@ -125,7 +125,7 @@ func change_appearance_from_effect() -> void:
 # when the slot creates me 
 func set_item_backup(incoming_item: Item):
 	item_backup = incoming_item
-	#print("component.gd: set backup item: ", item_backup)
+	print("component.gd: set backup item: ", item_backup)
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:
