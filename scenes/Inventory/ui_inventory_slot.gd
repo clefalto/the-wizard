@@ -14,7 +14,7 @@ func construct(slot: int):
 	set_item(null)
 
 func set_item(item: Item):
-	print("ui_inventory_slot.gd: setting item: ", item)
+	#print("ui_inventory_slot.gd: setting item: ", item)
 	# item is removed
 	if item == null:
 		# delete the current item copy
@@ -28,16 +28,15 @@ func set_item(item: Item):
 	# set item
 	current_item = item
 	control_item_container.add_child(current_item)
+	control_item_container.move_child(drag_button, current_item.get_index() +1)
 	control_item_default.visible = false
 	drag_button.visible = true
-	control_item_container.move_child(drag_button, current_item.get_index() +1)
 	
 	# change icon UI
 	current_item.visible = true
 	current_item.pivot_offset = current_item.size / 2.0
 	var scaling: float = control_item_default.size.x / current_item.size.x 
 	current_item.scale = Vector2(scaling, scaling)
-	print("scaling: ", scaling)
 	
 	# set drag UI (TODO: MAKE A COPY OF THE ICON ITSELF SOMEHOW, PROBABLY VIEWPORTS???)
 	# get color
@@ -46,8 +45,6 @@ func set_item(item: Item):
 		if i is ColorRect:
 			color = i.color
 	drag_button.set_preview_color(color)
-	
-	
 
 # kill button
 func _on_button_pressed() -> void:

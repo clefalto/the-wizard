@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj0sh7xht0dak"]
+[gd_scene load_steps=6 format=3 uid="uid://bj0sh7xht0dak"]
 
 [ext_resource type="Script" uid="uid://dehkimwkr3pso" path="res://scenes/Components/Base Component/component.gd" id="1_8rr4d"]
 [ext_resource type="PackedScene" uid="uid://dhabwavnq1c5d" path="res://scenes/UI/viewport_ui_input.tscn" id="2_mvy5i"]
 [ext_resource type="PackedScene" uid="uid://b1msdxl3r2f4b" path="res://scenes/Components/Base Component/ui_destroy_submenu.tscn" id="3_p4cmf"]
-[ext_resource type="PackedScene" uid="uid://bgm7el4jyvgru" path="res://scenes/Components/Base Component/ui_menu_button.tscn" id="4_p4cmf"]
+[ext_resource type="Script" uid="uid://cc6syu20oqcsl" path="res://scenes/Components/Slot/component_drop.gd" id="4_p4cmf"]
+[ext_resource type="PackedScene" uid="uid://bgm7el4jyvgru" path="res://scenes/Components/Base Component/ui_menu_button.tscn" id="5_8cimb"]
 
 [node name="ComponentBase" type="Node3D"]
 script = ExtResource("1_8rr4d")
@@ -14,4 +15,5 @@ visible = false
 node_viewport_control = ExtResource("3_p4cmf")
 
 [node name="MenuButton" parent="." instance=ExtResource("2_mvy5i")]
-node_viewport_control = ExtResource("4_p4cmf")
+script = ExtResource("4_p4cmf")
+node_viewport_control = ExtResource("5_8cimb")

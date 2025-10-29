@@ -46,7 +46,9 @@ func _ready() -> void:
 	#region set signals between components
 	var menu_button_button: Button = menu_button.get_interactables()["menu_button"]
 	menu_button_button.pressed.connect(_on_menu_button_pressed)
-	#print("check: ", menu_button_button)
+	
+	# menu button drop region
+	menu_button.dropped_component.connect(_on_dropped_item)
 	
 	var destroy_button: Button = destroy_buttons.get_interactables()["destroy_button"]
 	var send_button: Button = destroy_buttons.get_interactables()["send_button"]
@@ -77,6 +79,14 @@ func _on_send_button_pressed() -> void:
 	if inventory._on_bought_item(item_backup.duplicate()):
 		#print("bought!")
 		free_slot.emit()
+
+# dropped item on top of the menu button
+func _on_dropped_item(item: Item):
+	if item is ItemConsumable:
+		print("component.gd: dropped consumable item: ", item)
+	
+	else:
+		print("component.gd: item dropped is a component! Can't drop component on component!")
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:

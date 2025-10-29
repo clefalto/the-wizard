@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 
 # dragging and dropping item component to board
 func _on_dragging_item(slot: int):
-	if inventory[slot] is ItemComponent:
-		#print("inventory.gd: dragging this item: " + str(inventory[slot].component_scene))
+	if inventory[slot] is Item:
+		#print("inventory.gd: dragging this item: " + str(inventory[slot]))
 		GlobalComponent.dragged_component_scene = inventory[slot].duplicate()
 		GlobalComponent.dragged_inventory_slot = slot
 

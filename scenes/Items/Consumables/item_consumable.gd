@@ -1,3 +1,3 @@
-class_name ItemConsumeable extends Item
+class_name ItemConsumable extends Item
 
 @export var modifier: String = "modifier"

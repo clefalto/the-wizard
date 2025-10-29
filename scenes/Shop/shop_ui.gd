@@ -10,7 +10,6 @@ func _ready() -> void:
 	
 	for i in item_container_parent.get_children():
 		for item in i.get_children():
-			print("test item: ", item)
 			var button = Button.new()
 			item.add_child(button)
 			button.size = item.size
@@ -28,13 +27,13 @@ func _process(delta: float) -> void:
 
 
 func _on_item_bought(item: Item):
-	print("shop_ui.gd: buying: " + str(item))
+	#print("shop_ui.gd: buying: " + str(item))
 	
 	var new_item = item.duplicate()
 	new_item.visible = false
 	for i in new_item.get_children():
+		# get rid of the "buy" button, was previously set as a child of the node
 		if i is Button:
-			print("testing i: ", i)
 			new_item.remove_child(i)
 			i.queue_free()
 	

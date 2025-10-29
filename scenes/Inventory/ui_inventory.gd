@@ -19,5 +19,5 @@ func _ready() -> void:
 		slot += 1
 
 func _on_set_item(slot: int, item: Item):
-	print("ui_inventory.gd: on slot: ", slot, "; setting item: ", item)
+	#print("ui_inventory.gd: on slot: ", slot, "; setting item: ", item)
 	inventory[slot].set_item(item)
