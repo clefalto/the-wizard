@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalComponent="*res://Globals/global_component.gd"
-GlobalModifiers="*res://Globals/global_modifiers.gd"
 
 [dotnet]
 

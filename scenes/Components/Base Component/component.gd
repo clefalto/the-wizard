@@ -102,6 +102,7 @@ func _on_dropped_item(item: Item):
 		if effect_item:
 			effect_item.queue_free()
 		effect_item = item
+		add_child(effect_item)
 		change_appearance_from_effect()
 		
 		# delete item from inventory
