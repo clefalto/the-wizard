@@ -5,14 +5,16 @@ class_name Component extends Node
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 @onready var destroy_buttons = $DestroyButtons
 @onready var menu_button = $MenuButton
-@export var item_backup: Item = null
+@onready var item_backup: Item
 
 # used to calculate where to put buttons
 @export var component_object: Node = null
 @export var destroy_button_offset: float = 1
 
-# current consumable effect item
+# current consumable item effects
 @onready var effect_item: ItemConsumable = null
+@export var main_color_mesh: MeshInstance3D = null
+@onready var main_mesh_deafult_color: Color = Color.WHITE
 
 # signal
 signal free_slot()
@@ -52,6 +54,10 @@ func _ready() -> void:
 	# set destroy_buttons invisible
 	destroy_buttons.visible = false
 	
+	# get mesh color for effects
+	if main_color_mesh:
+		main_mesh_deafult_color = main_color_mesh.get_surface_override_material(0).albedo_color
+	
 	#region set signals between components
 	var menu_button_button: Button = menu_button.get_interactables()["menu_button"]
 	menu_button_button.pressed.connect(_on_menu_button_pressed)
@@ -76,9 +82,8 @@ func _on_destroy_button_pressed() -> void:
 	free_slot.emit()
 
 func _on_send_button_pressed() -> void:
-	#print("component.gd: sending back to inventory", "check item: ", item_backup)
-	
-	if item_backup == null:
+	print("component.gd: sending back to inventory", "check item: ", item_backup)
+	if item_backup:
 		return
 	
 	# see if inventory slot available
@@ -97,9 +102,28 @@ func _on_dropped_item(item: Item):
 		if effect_item:
 			effect_item.queue_free()
 		effect_item = item
+		change_appearance_from_effect()
 	
 	else:
 		print("component.gd: item dropped is a component! Can't drop component on component!")
+
+# change appearance from consumable effect
+func change_appearance_from_effect() -> void:
+	# make sure we have a mesh to change the color / texture of
+	if !main_color_mesh:
+		return
+	
+	if effect_item:
+		var color = effect_item.get_effect_color()
+		main_color_mesh.get_surface_override_material(0).albedo_color = color
+		#print("component.gd: new effect color is: ", color)
+	else:
+		print("component.gd: TODO: SET OG COLOR!")
+
+# when the slot creates me 
+func set_item_backup(incoming_item: Item):
+	item_backup = incoming_item
+	#print("component.gd: set backup item: ", item_backup)
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:

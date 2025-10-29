@@ -22,7 +22,7 @@ func _on_assign_component(incoming_item: Item):
 			return
 		
 		current_component = incoming_item.component_scene.instantiate()
-		current_component.item_backup = incoming_item
+		current_component.set_item_backup(incoming_item.duplicate())
 		current_component.free_slot.connect(_on_slot_freed)
 		drop_area.visible = false
 		
