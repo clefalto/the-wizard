@@ -115,7 +115,9 @@ func change_appearance_from_effect() -> void:
 	
 	if effect_item:
 		var color = effect_item.get_effect_color()
-		main_color_mesh.get_surface_override_material(0).albedo_color = color
+		var new_material = StandardMaterial3D.new()
+		new_material.albedo_color = color
+		main_color_mesh.set_surface_override_material(0, new_material)
 		#print("component.gd: new effect color is: ", color)
 	else:
 		print("component.gd: TODO: SET OG COLOR!")
