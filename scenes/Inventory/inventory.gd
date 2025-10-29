@@ -37,7 +37,7 @@ func _on_bought_item(item: Item) -> bool:
 			self.add_child(inventory[i])
 			
 			# update UI
-			inventory_ui._on_set_item(i, item.item_name)
+			inventory_ui._on_set_item(i, item.duplicate())
 			#print(inventory)
 			return true
 	
@@ -48,6 +48,7 @@ func _on_bought_item(item: Item) -> bool:
 func _on_remove_item_from_inventory(slot: int):
 	#print("destroying: " + str(slot))
 	if inventory[slot]:
-		inventory_ui._on_set_item(slot, "")
+		# delete the item copies in basckend and UI
+		inventory_ui._on_set_item(slot, null)
 		inventory[slot].queue_free()
 		inventory[slot] = null

@@ -31,7 +31,11 @@ func _on_item_bought(item: Item):
 	print("shop_ui.gd: buying: " + str(item))
 	
 	var new_item = item.duplicate()
+	new_item.visible = false
 	for i in new_item.get_children():
-		i.queue_free()
+		if i is Button:
+			print("testing i: ", i)
+			new_item.remove_child(i)
+			i.queue_free()
 	
 	inventory._on_bought_item(new_item)

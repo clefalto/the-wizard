@@ -18,5 +18,6 @@ func _ready() -> void:
 		i.construct(slot)
 		slot += 1
 
-func _on_set_item(slot: int, text: String):
-	inventory[slot].set_item(text)
+func _on_set_item(slot: int, item: Item):
+	print("ui_inventory.gd: on slot: ", slot, "; setting item: ", item)
+	inventory[slot].set_item(item)

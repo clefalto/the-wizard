@@ -1,6 +1,7 @@
 extends Button
 
 var slot_number = 0
+var preview_color = "#ffffff"
 @onready var inventory = get_tree().get_first_node_in_group("Inventory")
 
 func _ready() -> void:
@@ -12,7 +13,7 @@ func _get_drag_data(_at_position: Vector2) -> String:
 	
 	# create a preview for the dragging
 	var cpb := ColorRect.new()
-	cpb.color = Color("#00b1b1")
+	cpb.color = Color(preview_color)
 	cpb.size = Vector2(25.0, 25.0)
 
 	# Allows us to center the color picker on the mouse.
@@ -36,3 +37,6 @@ func _get_drag_data(_at_position: Vector2) -> String:
 #
 #func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	#print("drag_drop.gd: dropped!")
+
+func set_preview_color(color: Color):
+	preview_color = color
