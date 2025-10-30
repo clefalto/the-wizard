@@ -59,16 +59,20 @@ func _ready() -> void:
 		main_mesh_deafult_color = main_color_mesh.get_surface_override_material(0).albedo_color
 	
 	#region set signals between components
+	# menu button
 	var menu_button_button: Button = menu_button.get_interactables()["menu_button"]
 	menu_button_button.pressed.connect(_on_menu_button_pressed)
 	
 	# menu button drop region
 	menu_button.dropped_component.connect(_on_dropped_item)
 	
+	# destroy buttons
 	var destroy_button: Button = destroy_buttons.get_interactables()["destroy_button"]
 	var send_button: Button = destroy_buttons.get_interactables()["send_button"]
+	var remove_effect_button: Button = destroy_buttons.get_interactables()["remove_effect_button"]
 	destroy_button.pressed.connect(_on_destroy_button_pressed)
 	send_button.pressed.connect(_on_send_button_pressed)
+	remove_effect_button.pressed.connect(_on_remove_effect)
 	
 	#endregion
 
@@ -82,7 +86,7 @@ func _on_destroy_button_pressed() -> void:
 	free_slot.emit()
 
 func _on_send_button_pressed() -> void:
-	print("component.gd: sending back to inventory", "; check item: ", item_backup)
+	#print("component.gd: sending back to inventory", "; check item: ", item_backup)
 	if !item_backup:
 		return
 	
@@ -90,7 +94,6 @@ func _on_send_button_pressed() -> void:
 	# NEEDS TO BE A DUPLICATE!!! the inventory bought function queue frees the item since it
 	# assumes that the item passed in is a dupe
 	if inventory._on_bought_item(item_backup.duplicate()):
-		print("bought!")
 		free_slot.emit()
 
 # dropped item on top of the menu button
@@ -111,25 +114,37 @@ func _on_dropped_item(item: Item):
 	else:
 		print("component.gd: item dropped is a component! Can't drop component on component!")
 
+# remove effect (From button)
+func _on_remove_effect():
+	if !item_backup:
+		return
+	
+	# remove the item backup var and reset colors
+	effect_item.queue_free()
+	effect_item = null
+	change_appearance_from_effect()
+
 # change appearance from consumable effect
 func change_appearance_from_effect() -> void:
 	# make sure we have a mesh to change the color / texture of
 	if !main_color_mesh:
 		return
 	
+	# if we have an active effect, else if we dont!
+	var new_material = StandardMaterial3D.new()
 	if effect_item:
 		var color = effect_item.get_effect_color()
-		var new_material = StandardMaterial3D.new()
 		new_material.albedo_color = color
 		main_color_mesh.set_surface_override_material(0, new_material)
 		#print("component.gd: new effect color is: ", color)
 	else:
-		print("component.gd: TODO: SET OG COLOR!")
+		new_material.albedo_color = main_mesh_deafult_color
+		main_color_mesh.set_surface_override_material(0, new_material)
 
 # when the slot creates me 
 func set_item_backup(incoming_item: Item):
 	item_backup = incoming_item
-	print("component.gd: set backup item: ", item_backup)
+	#print("component.gd: set backup item: ", item_backup)
 
 # opening the mini menu
 func _on_menu_button_pressed() -> void:

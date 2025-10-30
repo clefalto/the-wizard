@@ -38,7 +38,7 @@ func _on_bought_item(item: Item) -> bool:
 			
 			# update UI
 			inventory_ui._on_set_item(i, item.duplicate())
-			print(inventory)
+			#print("inventory.gd: Inventroy: ", inventory)
 			return true
 	
 	print("inventory.gd: inventory full!")
