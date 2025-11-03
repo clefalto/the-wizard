@@ -139,6 +139,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_tyqpo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/BaseBoard"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_7tnmc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BaseBoard/StaticBody3D"]
@@ -156,6 +157,8 @@ mesh = SubResource("BoxMesh_j57ll")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Playfield/LeftFlipper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.392283)
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/LeftFlipper/CharacterBody3D"]
 shape = SubResource("ConvexPolygonShape3D_nemko")
@@ -173,12 +176,15 @@ mesh = SubResource("BoxMesh_j57ll")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Playfield/RightFlipper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.392283)
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/RightFlipper/CharacterBody3D"]
 shape = SubResource("ConvexPolygonShape3D_nemko")
 
 [node name="LeftWall" type="StaticBody3D" parent="Playfield"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+collision_mask = 4
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_xo0s0")
 
@@ -188,6 +194,7 @@ shape = SubResource("BoxShape3D_62fbj")
 
 [node name="RightWall" type="StaticBody3D" parent="Playfield"]
 transform = Transform3D(1, -7.45058e-09, 0, 0, 1, 0, 0, -4.95751e-09, 1, 0, 0, -2.14715)
+collision_mask = 4
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_62fbj")
 
@@ -200,6 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45156, 0.616541, -2.38358)
 script = ExtResource("6_vknm6")
 
 [node name="BallChuteWall" type="StaticBody3D" parent="Playfield/BallChute"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_vknm6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BallChute/BallChuteWall"]
@@ -209,6 +217,7 @@ debug_color = Color(0.639216, 0.6, 0.701961, 0.419608)
 
 [node name="BallChuteOneWayArea" type="Area3D" parent="Playfield/BallChute"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.416378)
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BallChute/BallChuteOneWayArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0257111, -0.278076, 0.181595)
@@ -221,12 +230,14 @@ mesh = SubResource("BoxMesh_3532u")
 skeleton = NodePath("../../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/BallChute/BallChute"]
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BallChute/BallChute/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_vknm6")
 
 [node name="TopWall" type="StaticBody3D" parent="Playfield"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+collision_mask = 4
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_pkgf5")
 
@@ -236,6 +247,8 @@ shape = SubResource("BoxShape3D_pkgf5")
 
 [node name="BallDrain" type="Area3D" parent="Playfield"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("4_bj65e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BallDrain"]
@@ -258,6 +271,7 @@ transform = Transform3D(0.756436, 0, -0.654068, 0, 1, 0, 0.654068, 0, 0.756436, 
 mesh = SubResource("BoxMesh_tyqpo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/LowerObstacleLeft"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_tyqpo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/LowerObstacleLeft/StaticBody3D"]
@@ -269,6 +283,7 @@ mesh = SubResource("BoxMesh_tyqpo")
 skeleton = NodePath("../LowerObstacleLeft")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/LowerObstacleRight"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_187xg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/LowerObstacleRight/StaticBody3D"]

@@ -74,6 +74,12 @@ MB_LEFT={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="walls"
+3d_physics/layer_2="components"
+3d_physics/layer_3="ball"
+
 [physics]
 
 common/physics_ticks_per_second=120

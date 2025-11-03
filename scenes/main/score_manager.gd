@@ -1,4 +1,4 @@
-extends Node
+class_name ScoreManager extends Node
 
 @onready var ui_scoreboard = $"../Control/ScoreboardUI"
 

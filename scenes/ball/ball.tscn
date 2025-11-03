@@ -19,11 +19,14 @@ radius = 0.125
 height = 0.25
 
 [node name="Ball" type="RigidBody3D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.08
 physics_material_override = SubResource("PhysicsMaterial_nv6q1")
+continuous_cd = true
 script = ExtResource("1_oqv3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

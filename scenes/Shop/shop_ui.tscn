@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7nybjw11hat7"]
+[gd_scene load_steps=7 format=3 uid="uid://c7nybjw11hat7"]
 
 [ext_resource type="Script" uid="uid://dyxpfaku8qyn4" path="res://scenes/Shop/shop_ui.gd" id="1_5khn6"]
 [ext_resource type="PackedScene" uid="uid://bxg56qub7pe5k" path="res://scenes/Items/Components/ItemTestComponent.tscn" id="2_r0od5"]
 [ext_resource type="PackedScene" uid="uid://cax4udyso27lq" path="res://scenes/Items/Consumables/ItemTestPointConsumable.tscn" id="3_xoxfi"]
 [ext_resource type="PackedScene" uid="uid://bwb1b2njfd2np" path="res://scenes/Items/Consumables/ItemTestMultConsumable.tscn" id="4_tvsgq"]
+[ext_resource type="PackedScene" uid="uid://ck8xut51gfe1t" path="res://scenes/Components/Bumper/component_bumper.tscn" id="5_tvsgq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5ood"]
 font_size = 50
@@ -15,8 +16,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.159973
-offset_right = 0.159973
+offset_left = -153.0
+offset_top = -172.0
+offset_right = 141.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -25,15 +28,9 @@ script = ExtResource("1_5khn6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -147.0
-offset_top = -156.0
-offset_right = 147.0
-offset_bottom = 156.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.241258, 4.96709e-05, 0.249763, 1)
@@ -57,11 +54,11 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.489796
+anchor_top = 0.419872
+anchor_right = 0.489796
+anchor_bottom = 0.804487
 offset_left = -170.0
 offset_top = -50.0
 offset_right = 170.0
@@ -70,6 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(170, 50)
+theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -90,4 +88,14 @@ metadata/_edit_lock_ = true
 
 [node name="ItemTestPointConsumable" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_xoxfi")]
 layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ItemBumperComponent" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_r0od5")]
+layout_mode = 2
+component_scene = ExtResource("5_tvsgq")
+item_name = "Bumper"
 metadata/_edit_lock_ = true
