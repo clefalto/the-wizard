@@ -29,6 +29,7 @@ mesh = SubResource("CylinderMesh_jfcba")
 [node name="RigidBody3D" type="RigidBody3D" parent="MeshInstance3D" index="0"]
 collision_layer = 2
 collision_mask = 4
+input_ray_pickable = false
 freeze = true
 freeze_mode = 1
 custom_integrator = true
@@ -38,4 +39,7 @@ max_contacts_reported = 5
 script = ExtResource("3_2mfwq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/RigidBody3D" index="0"]
+shape = SubResource("CylinderShape3D_jfcba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 shape = SubResource("CylinderShape3D_jfcba")

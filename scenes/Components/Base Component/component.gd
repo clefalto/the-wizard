@@ -4,12 +4,12 @@ class_name Component extends Node
 @onready var inventory = get_tree().get_first_node_in_group("Inventory")
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 @onready var destroy_buttons = $DestroyButtons
-@onready var menu_button = $MenuButton
 @onready var item_backup: Item
 
 # used to calculate where to put buttons
-@export var component_object: Node = null
-@export var destroy_button_offset: float = 1
+@onready var menu_area_3d := $Area3D
+@export var menu_scale := 1.0
+var is_mouse_inside: bool = false
 
 # current consumable item effects
 @onready var effect_item: ItemConsumable = null
@@ -33,23 +33,18 @@ func trigger():
 	pass
 
 func _ready() -> void:
-	# get main component mesh height
-	# will likely need to be changed later with more complicated stuff
-	var total_height = 0
-	if component_object != null:
-		for i in component_object.get_children():
-			if i is MeshInstance3D:
-				var mesh_aabb = i.get_aabb()
-				total_height += mesh_aabb.size.y
-				#print("component.gd: mesh height: ", total_height)
+	# when you drop the component to the board, the mouse is going to be on the component
+	_on_area_3d_mouse_entered()
 	
-	# move menu button and set signals
-	menu_button.position += Vector3(0, total_height, 0)
-	
-	# move buttons and face camera
-	destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
+	# move destroy buttons and face the camera
+	#var area_3d_collision_box = menu_area_3d.get_child(0)
+	#var total_height = area_3d_collision_box.height
+	#
+	#print("height: ", total_height)
+	#destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
 	destroy_buttons.look_at(camera.position)
 	destroy_buttons.rotation += Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0))
+	destroy_buttons.scale = Vector3(menu_scale, menu_scale, menu_scale)
 	
 	# set destroy_buttons invisible
 	destroy_buttons.visible = false
@@ -59,13 +54,6 @@ func _ready() -> void:
 		main_mesh_deafult_color = main_color_mesh.get_surface_override_material(0).albedo_color
 	
 	#region set signals between components
-	# menu button
-	var menu_button_button: Button = menu_button.get_interactables()["menu_button"]
-	menu_button_button.pressed.connect(_on_menu_button_pressed)
-	
-	# menu button drop region
-	menu_button.dropped_component.connect(_on_dropped_item)
-	
 	# destroy buttons
 	var destroy_button: Button = destroy_buttons.get_interactables()["destroy_button"]
 	var send_button: Button = destroy_buttons.get_interactables()["send_button"]
@@ -77,9 +65,18 @@ func _ready() -> void:
 	#endregion
 
 func _process(delta: float) -> void:
-	# check if the mouse is outside of the menu button, destroy buttons, and left click
-	if !destroy_buttons.is_mouse_inside and !menu_button.is_mouse_inside and Input.is_action_just_pressed("MB_LEFT"):
+	# check if the mouse is inside the area3D and left click
+	if is_mouse_inside and Input.is_action_just_pressed("MB_LEFT"):
+		#print("component.gd: opening menu!")
+		_on_open_menu()
+	
+	# check if the mouse is outside of destroy buttons, and left click
+	if !destroy_buttons.is_mouse_inside and !is_mouse_inside and Input.is_action_just_pressed("MB_LEFT"):
 		_on_close_menu()
+	
+	# check if we're dragging something
+	if is_mouse_inside and GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
+		_on_dropped_item(GlobalComponent.dragged_component_scene)
 
 func _on_destroy_button_pressed() -> void:
 	#print("component.gd: destroyed")
@@ -95,6 +92,19 @@ func _on_send_button_pressed() -> void:
 	# assumes that the item passed in is a dupe
 	if inventory._on_bought_item(item_backup.duplicate()):
 		free_slot.emit()
+
+# remove effect (From button)
+func _on_remove_effect():
+	if !item_backup:
+		return
+	
+	if effect_item == null:
+		return
+	
+	# remove the item backup var and reset colors
+	effect_item.queue_free()
+	effect_item = null
+	change_appearance_from_effect()
 
 # dropped item on top of the menu button
 func _on_dropped_item(item: Item):
@@ -113,16 +123,6 @@ func _on_dropped_item(item: Item):
 	
 	else:
 		print("component.gd: item dropped is a component! Can't drop component on component!")
-
-# remove effect (From button)
-func _on_remove_effect():
-	if !item_backup:
-		return
-	
-	# remove the item backup var and reset colors
-	effect_item.queue_free()
-	effect_item = null
-	change_appearance_from_effect()
 
 # change appearance from consumable effect
 func change_appearance_from_effect() -> void:
@@ -147,10 +147,24 @@ func set_item_backup(incoming_item: Item):
 	#print("component.gd: set backup item: ", item_backup)
 
 # opening the mini menu
-func _on_menu_button_pressed() -> void:
+func _on_open_menu() -> void:
 	#print("PRESSED MENU BUTTON!")
+	# need to unclick so you dont accidentyl click destroy buttons
+	menu_area_3d.input_ray_pickable = false
+	Input.action_release("MB_LEFT")
 	destroy_buttons.set_visible(true)
 
 # close the mini menu
 func _on_close_menu() -> void:
+	#print("CLOSING MENU!")
 	destroy_buttons.set_visible(false)
+	menu_area_3d.input_ray_pickable = true
+
+# for opening the menu
+func _on_area_3d_mouse_entered() -> void:
+	is_mouse_inside = true
+	#print("component.gd: is_mouse_inside: ", is_mouse_inside)
+
+func _on_area_3d_mouse_exited() -> void:
+	is_mouse_inside = false
+	#print("component.gd: is_mouse_inside: ", is_mouse_inside)
