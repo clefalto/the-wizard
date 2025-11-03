@@ -83,6 +83,7 @@ MB_LEFT={
 [physics]
 
 common/physics_ticks_per_second=120
+common/max_physics_steps_per_frame=16
 2d/default_gravity=154.552
 
 [rendering]

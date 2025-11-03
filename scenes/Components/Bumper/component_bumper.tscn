@@ -21,7 +21,9 @@ radius = 1.0
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("2_2mfwq")
 points_added = 20.0
-bump_force = 0.2
+bump_force = 1.0
+ball_lockout_time = 0.05
+ball_lockout_cache_clear_time = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("CylinderMesh_jfcba")
