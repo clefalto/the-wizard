@@ -38,23 +38,35 @@ func _ready() -> void:
 	node_collision.shape.size = Vector3(node_quad.mesh.size.x, 0.01, node_quad.mesh.size.y)
 	#print("Quad size:", node_quad.mesh.size, "Area3d size: ", node_collision.shape.size)
 	
-	# set quad texture to viewport
+	#region set quad texture to viewport
 	var viewport_material:= StandardMaterial3D.new()
 	viewport_material.resource_local_to_scene = true
 	viewport_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	viewport_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	viewport_material.albedo_texture = node_viewport.get_texture()
 	node_quad.set_surface_override_material(0, viewport_material)
+	
+	# make the mesh always on top!
+	viewport_material.no_depth_test = true # ignores depth buffer
+	viewport_material.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_DISABLED
+	viewport_material.render_priority = 99 #idk some high number
+	
+	# set the texture!
 	node_quad.material_override = viewport_material
-
+	#endregion
+	
 	# set signals
 	node_area.mouse_entered.connect(_mouse_entered_area)
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)
 	
+	
+	
+	
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
 	if node_quad.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:
 		set_process(false)
+	
 
 func _process(_delta: float) -> void:
 	# NOTE: Remove this function if you don't plan on using billboard settings.
