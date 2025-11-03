@@ -1,6 +1,6 @@
 class_name Component extends Node
 
-@onready var score_manager = get_tree().get_first_node_in_group("ScoreManager")
+@onready var score_manager: ScoreManager = get_tree().get_first_node_in_group("ScoreManager")
 @onready var inventory = get_tree().get_first_node_in_group("Inventory")
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 @onready var destroy_buttons = $DestroyButtons

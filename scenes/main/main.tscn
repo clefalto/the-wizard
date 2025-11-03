@@ -39,12 +39,12 @@ offset_top = -115.0
 offset_right = 949.0
 offset_bottom = -15.0
 
-[node name="ShopUI" parent="Control" instance=ExtResource("4_l3cfh")]
+[node name="Shop" parent="Control" instance=ExtResource("4_l3cfh")]
 layout_mode = 1
-offset_left = -10.0
-offset_top = 15.0
-offset_right = -9.67999
-offset_bottom = 15.0
+offset_left = -155.0
+offset_top = -121.0
+offset_right = 139.0
+offset_bottom = 191.0
 
 [node name="InventoryUI" parent="Control" instance=ExtResource("3_l3cfh")]
 layout_mode = 1
