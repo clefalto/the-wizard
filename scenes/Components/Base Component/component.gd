@@ -36,12 +36,7 @@ func _ready() -> void:
 	# when you drop the component to the board, the mouse is going to be on the component
 	_on_area_3d_mouse_entered()
 	
-	# move destroy buttons and face the camera
-	#var area_3d_collision_box = menu_area_3d.get_child(0)
-	#var total_height = area_3d_collision_box.height
-	#
-	#print("height: ", total_height)
-	#destroy_buttons.position += Vector3(0, total_height + destroy_button_offset, 0)
+	# move the menu
 	destroy_buttons.look_at(camera.position)
 	destroy_buttons.rotation += Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0))
 	destroy_buttons.scale = Vector3(menu_scale, menu_scale, menu_scale)
@@ -61,7 +56,6 @@ func _ready() -> void:
 	destroy_button.pressed.connect(_on_destroy_button_pressed)
 	send_button.pressed.connect(_on_send_button_pressed)
 	remove_effect_button.pressed.connect(_on_remove_effect)
-	
 	#endregion
 
 func _process(delta: float) -> void:
