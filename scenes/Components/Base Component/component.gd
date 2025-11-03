@@ -151,8 +151,8 @@ func _on_open_menu() -> void:
 	#print("PRESSED MENU BUTTON!")
 	# need to unclick so you dont accidentyl click destroy buttons
 	menu_area_3d.input_ray_pickable = false
-	Input.action_release("MB_LEFT")
 	destroy_buttons.set_visible(true)
+	Input.action_release("MB_LEFT")
 
 # close the mini menu
 func _on_close_menu() -> void:
