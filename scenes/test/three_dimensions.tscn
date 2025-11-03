@@ -140,6 +140,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tyqpo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Playfield/BaseBoard"]
 collision_mask = 4
+input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_7tnmc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Playfield/BaseBoard/StaticBody3D"]

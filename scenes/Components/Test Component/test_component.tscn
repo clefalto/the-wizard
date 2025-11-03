@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc41plpea5nii"]
+[gd_scene load_steps=5 format=3 uid="uid://cc41plpea5nii"]
 
 [ext_resource type="Script" uid="uid://bjtqwy14m4xhw" path="res://scenes/Components/Test Component/test_component.gd" id="1_cwexv"]
 [ext_resource type="PackedScene" uid="uid://bj0sh7xht0dak" path="res://scenes/Components/Base Component/component_base.tscn" id="1_rnk37"]
@@ -11,10 +11,6 @@ radius = 1.0
 top_radius = 1.0
 bottom_radius = 1.0
 height = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vduw"]
-transparency = 1
-albedo_color = Color(0, 1, 1, 1)
 
 [node name="TestComponent" node_paths=PackedStringArray("main_color_mesh") instance=ExtResource("1_rnk37")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -35,7 +31,6 @@ input_ray_pickable = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBumper" index="0"]
 mesh = SubResource("CylinderMesh_it08i")
-surface_material_override/0 = SubResource("StandardMaterial3D_8vduw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBumper" index="1"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

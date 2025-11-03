@@ -16,6 +16,9 @@ var is_mouse_inside: bool = false
 @export var main_color_mesh: MeshInstance3D = null
 @onready var main_mesh_deafult_color: Color = Color.WHITE
 
+# outline shader (for mouse hoveringst)
+@onready var outline_shader: ShaderMaterial = preload("res://materials/material_outline.tres")
+
 # signal
 signal free_slot()
 
@@ -46,7 +49,9 @@ func _ready() -> void:
 	
 	# get mesh color for effects
 	if main_color_mesh:
-		main_mesh_deafult_color = main_color_mesh.get_surface_override_material(0).albedo_color
+		#main_mesh_deafult_color = main_color_mesh.get_surface_override_material(0).albedo_color
+		main_color_mesh.material_overlay = outline_shader
+		outline_shader.resource_local_to_scene = true
 	
 	#region set signals between components
 	# destroy buttons
@@ -59,6 +64,16 @@ func _ready() -> void:
 	#endregion
 
 func _process(delta: float) -> void:
+	# outline changing
+	if is_mouse_inside:
+		if main_color_mesh:
+			main_color_mesh.material_overlay.set_shader_parameter("enabled", true)
+		else:
+			printerr("no main color mesh on component %s, so the outline won't be rendered" % self)
+	else:
+		if main_color_mesh:
+			main_color_mesh.material_overlay.set_shader_parameter("enabled", false)
+	
 	# check if the mouse is inside the area3D and left click
 	if is_mouse_inside and Input.is_action_just_pressed("MB_LEFT"):
 		#print("component.gd: opening menu!")
