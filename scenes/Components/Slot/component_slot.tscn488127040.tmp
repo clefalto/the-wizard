@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://qc0vw3w573tk"]
+
+[ext_resource type="Script" uid="uid://bmwcs02plxqyi" path="res://scenes/Components/Slot/component_slot.gd" id="1_kvo5e"]
+[ext_resource type="PackedScene" uid="uid://dhabwavnq1c5d" path="res://scenes/UI/viewport_ui_input.tscn" id="3_7pgg1"]
+[ext_resource type="PackedScene" uid="uid://bvdoubpd31qsx" path="res://scenes/Components/Slot/ui_component_slot.tscn" id="3_kla61"]
+[ext_resource type="Script" uid="uid://cc6syu20oqcsl" path="res://scenes/Components/Slot/component_drop.gd" id="3_pnoxd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ixoy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kvo5e"]
+material = SubResource("StandardMaterial3D_3ixoy")
+
+[node name="ComponentSlot" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_kvo5e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("SphereMesh_kvo5e")
+
+[node name="SlotDrop" parent="." instance=ExtResource("3_7pgg1")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+script = ExtResource("3_pnoxd")
+node_viewport_control = ExtResource("3_kla61")

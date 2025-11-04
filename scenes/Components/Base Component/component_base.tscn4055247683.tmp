@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj0sh7xht0dak"]
+[gd_scene load_steps=4 format=3 uid="uid://bj0sh7xht0dak"]
 
 [ext_resource type="Script" uid="uid://dehkimwkr3pso" path="res://scenes/Components/Base Component/component.gd" id="1_8rr4d"]
 [ext_resource type="PackedScene" uid="uid://dhabwavnq1c5d" path="res://scenes/UI/viewport_ui_input.tscn" id="2_mvy5i"]
 [ext_resource type="Script" uid="uid://dt2ffrfxr6lfk" path="res://scenes/Components/Base Component/menu_viewport_input.gd" id="3_mvy5i"]
-[ext_resource type="PackedScene" uid="uid://b1msdxl3r2f4b" path="res://scenes/Components/Base Component/ui_destroy_submenu.tscn" id="3_p4cmf"]
 
 [node name="ComponentBase" type="Node3D"]
 script = ExtResource("1_8rr4d")
@@ -16,7 +15,6 @@ collision_mask = 4
 [node name="DestroyButtons" parent="." instance=ExtResource("2_mvy5i")]
 visible = false
 script = ExtResource("3_mvy5i")
-node_viewport_control = ExtResource("3_p4cmf")
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
