@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 	
 	# check if we're dragging something
 	if is_mouse_inside and GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
-		_on_dropped_item(GlobalComponent.dragged_component_scene)
+		_on_dropped_item(GlobalComponent.dragged_component_scene.duplicate())
 
 func _on_destroy_button_pressed() -> void:
 	#print("component.gd: destroyed")
