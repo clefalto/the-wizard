@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 	
 	# reset dragged item global stuff
 	if GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
+		GlobalComponent.dragged_component_scene.queue_free()
 		GlobalComponent.dragged_component_scene = null
 		GlobalComponent.dragged_inventory_slot = -1
 

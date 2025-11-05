@@ -36,7 +36,16 @@ func _ready() -> void:
 	# when you drop the component to the board, the mouse is going to be on the component
 	_on_area_3d_mouse_entered()
 	
-	# move the menu
+	# get bounds of the component and use it to move menu
+	var bound = GlobalFunctions.get_node_aabb(self, [destroy_buttons])
+	#print("component.gd: check bounds: ", bound)
+	var new_x = bound.position.x
+	var new_y = bound.position.y + bound.size.y
+	var new_z = bound.position.z + (bound.size.z / 2)
+	var new_pos = Vector3(new_x, new_y, new_z)
+	#print("component.gd: new pos: ", new_pos)
+	
+	destroy_buttons.position = new_pos
 	destroy_buttons.look_at(camera.position)
 	destroy_buttons.rotation += Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0))
 	destroy_buttons.scale = Vector3(menu_scale, menu_scale, menu_scale)
@@ -70,7 +79,7 @@ func _process(delta: float) -> void:
 	
 	# check if we're dragging something
 	if is_mouse_inside and GlobalComponent.dragged_component_scene != null and Input.is_action_just_released("MB_LEFT"):
-		_on_dropped_item(GlobalComponent.dragged_component_scene)
+		_on_dropped_item(GlobalComponent.dragged_component_scene.duplicate())
 
 func _on_destroy_button_pressed() -> void:
 	#print("component.gd: destroyed")
@@ -144,9 +153,9 @@ func set_item_backup(incoming_item: Item):
 func _on_open_menu() -> void:
 	#print("PRESSED MENU BUTTON!")
 	# need to unclick so you dont accidentyl click destroy buttons
+	Input.action_release("MB_LEFT")
 	menu_area_3d.input_ray_pickable = false
 	destroy_buttons.set_visible(true)
-	Input.action_release("MB_LEFT")
 
 # close the mini menu
 func _on_close_menu() -> void:
