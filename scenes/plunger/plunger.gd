@@ -18,7 +18,9 @@ func _ready():
 	label.visible = false
 
 func plunge(force: bool = false):
-	if not force:
+	if force:
+		spawn_ball()
+	else:
 		if not allow_plunge:
 			print("cannot plunge right now")
 			return
@@ -26,13 +28,16 @@ func plunge(force: bool = false):
 			print("no more balls! not plunging!")
 			return
 		
-	
-	ball_manager.use_ball()
+		ball_manager.use_ball() # use ball only if we're not forcing
+		
+		spawn_ball()
+		allow_plunge = false
+
+func spawn_ball():
 	var ball_instance = ball_scene.instantiate()
 	ball_instance.position = ball_spawn_point.position
 	get_tree().root.add_child(ball_instance)
 	ball_instance.apply_central_impulse(Vector3(0.0, 0.0, plunge_force))
-	allow_plunge = false
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("DEBUG_spawn_ball"):

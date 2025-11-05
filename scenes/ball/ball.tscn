@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://dyomfxxd7a4cn" path="res://shaders/ball_temp.gdshader" id="2_nv6q1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nv6q1"]
-friction = 0.1
+friction = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oqv3d"]
 radius = 0.125
